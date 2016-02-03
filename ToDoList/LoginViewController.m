@@ -7,6 +7,8 @@
 //
 
 #import "LoginViewController.h"
+#import <Parse/Parse.h>
+
 #define facebookBlue [UIColor colorWithRed:59/255.0 green:89/255.0 blue:152/255.0 alpha:1.0]
 
 
@@ -22,6 +24,12 @@
     [super viewDidLoad];
     
     [self addElements];
+    
+    
+    //test for parse
+    PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
+    testObject[@"foo"] = @"bar";
+    [testObject saveInBackground];
     
     
 }
@@ -53,7 +61,7 @@
 
 -(void)nextView
 {
-    [self performSegueWithIdentifier:@"next" sender:self];
+    [self performSegueWithIdentifier:@"toTable" sender:self];
 }//nextView
 
 
