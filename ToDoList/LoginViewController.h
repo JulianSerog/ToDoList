@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface ViewController : UIViewController
 
 @property(strong, nonatomic) UILabel *title;
-@property(strong,nonatomic) UIButton *loginButton;
+@property(strong,nonatomic) UIButton *loginButton, *altLoginButton;
+
+//user
+@property(strong,nonatomic) PFUser *user;
 
 @end
 

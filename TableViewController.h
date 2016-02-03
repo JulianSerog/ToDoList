@@ -1,5 +1,5 @@
 //
-//  CollectionViewController.h
+//  TableViewController.h
 //  ToDoList
 //
 //  Created by Esa Serog on 2/2/16.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CollectionViewController : UICollectionViewController
+@interface TableViewController : UITableViewController
 
 @end

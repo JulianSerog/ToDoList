@@ -18,19 +18,24 @@
 
 @implementation ViewController
 
-@synthesize title, loginButton;
+@synthesize title, loginButton, altLoginButton, user;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self addElements];
     
+    //user = []
+    
     
     //test for parse
+    /*
     PFObject *testObject = [PFObject objectWithClassName:@"TestObject"];
     testObject[@"foo"] = @"bar";
     [testObject saveInBackground];
     
+    NSLog(@"%@",[testObject description]);
+     */
     
 }
 
@@ -51,9 +56,18 @@
     loginButton.layer.cornerRadius = 5;
     [loginButton addTarget:self action:@selector(nextView) forControlEvents:UIControlEventTouchUpInside];
     
+    //other login in button
+    self.altLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width * 0.2, self.view.frame.size.height * 0.8, self.view.frame.size.width * 0.6, self.view.frame.size.height * 0.1)];
+    //self.altLoginButton.frame = loginButton.frame;
+    [self.altLoginButton setTitle:@"Create an account" forState:UIControlStateNormal];
+    [self.altLoginButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.altLoginButton addTarget:self action:@selector(toCustomLogin) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     //add to view
     [self.view addSubview:self.title];
     [self.view addSubview:self.loginButton];
+    [self.view addSubview:self.altLoginButton];
     
     
 }//addElements
@@ -63,7 +77,10 @@
 {
     [self performSegueWithIdentifier:@"toTable" sender:self];
 }//nextView
-
+-(void)toCustomLogin
+{
+    [self performSegueWithIdentifier:@"customLogin" sender:self];
+}//toCustomLogin
 
 
 

@@ -31,7 +31,8 @@
 		9E22D4081C61943C00E88020 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E22D4021C61943C00E88020 /* ParseFacebookUtilsV4.framework */; };
 		9E22D4091C61943C00E88020 /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E22D4031C61943C00E88020 /* ParseTwitterUtils.framework */; };
 		9E22D40A1C61943C00E88020 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E22D4041C61943C00E88020 /* ParseUI.framework */; };
-		9E22D4101C61983C00E88020 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E22D40F1C61983C00E88020 /* CollectionViewController.m */; };
+		9E22D42E1C61A09400E88020 /* CustomLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E22D42D1C61A09400E88020 /* CustomLoginViewController.m */; };
+		9E22D4311C61A42C00E88020 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E22D4301C61A42C00E88020 /* TableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,8 +85,10 @@
 		9E22D4021C61943C00E88020 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		9E22D4031C61943C00E88020 /* ParseTwitterUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseTwitterUtils.framework; sourceTree = "<group>"; };
 		9E22D4041C61943C00E88020 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
-		9E22D40E1C61983C00E88020 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollectionViewController.h; path = ../CollectionViewController.h; sourceTree = "<group>"; };
-		9E22D40F1C61983C00E88020 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectionViewController.m; path = ../CollectionViewController.m; sourceTree = "<group>"; };
+		9E22D42C1C61A09400E88020 /* CustomLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLoginViewController.h; sourceTree = "<group>"; };
+		9E22D42D1C61A09400E88020 /* CustomLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLoginViewController.m; sourceTree = "<group>"; };
+		9E22D42F1C61A42C00E88020 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewController.h; path = ../TableViewController.h; sourceTree = "<group>"; };
+		9E22D4301C61A42C00E88020 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewController.m; path = ../TableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,10 +220,12 @@
 		9E22D4111C61997300E88020 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9E22D40E1C61983C00E88020 /* CollectionViewController.h */,
-				9E22D40F1C61983C00E88020 /* CollectionViewController.m */,
 				9E05B7091C613901004B7A51 /* LoginViewController.h */,
 				9E05B70A1C613901004B7A51 /* LoginViewController.m */,
+				9E22D42F1C61A42C00E88020 /* TableViewController.h */,
+				9E22D4301C61A42C00E88020 /* TableViewController.m */,
+				9E22D42C1C61A09400E88020 /* CustomLoginViewController.h */,
+				9E22D42D1C61A09400E88020 /* CustomLoginViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -358,10 +363,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E22D4101C61983C00E88020 /* CollectionViewController.m in Sources */,
 				9E05B70B1C613901004B7A51 /* LoginViewController.m in Sources */,
 				9E05B7081C613901004B7A51 /* AppDelegate.m in Sources */,
 				9E05B7051C613901004B7A51 /* main.m in Sources */,
+				9E22D4311C61A42C00E88020 /* TableViewController.m in Sources */,
+				9E22D42E1C61A09400E88020 /* CustomLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
