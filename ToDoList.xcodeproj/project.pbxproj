@@ -33,6 +33,7 @@
 		9E22D40A1C61943C00E88020 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E22D4041C61943C00E88020 /* ParseUI.framework */; };
 		9E22D42E1C61A09400E88020 /* CustomLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E22D42D1C61A09400E88020 /* CustomLoginViewController.m */; };
 		9E22D4311C61A42C00E88020 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E22D4301C61A42C00E88020 /* TableViewController.m */; };
+		9E9E5EF41C62E48800C0FC50 /* LandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9E5EF31C62E48800C0FC50 /* LandingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,8 @@
 		9E22D42D1C61A09400E88020 /* CustomLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLoginViewController.m; sourceTree = "<group>"; };
 		9E22D42F1C61A42C00E88020 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewController.h; path = ../TableViewController.h; sourceTree = "<group>"; };
 		9E22D4301C61A42C00E88020 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewController.m; path = ../TableViewController.m; sourceTree = "<group>"; };
+		9E9E5EF21C62E48800C0FC50 /* LandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandingViewController.h; sourceTree = "<group>"; };
+		9E9E5EF31C62E48800C0FC50 /* LandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,6 +225,8 @@
 			children = (
 				9E05B7091C613901004B7A51 /* LoginViewController.h */,
 				9E05B70A1C613901004B7A51 /* LoginViewController.m */,
+				9E9E5EF21C62E48800C0FC50 /* LandingViewController.h */,
+				9E9E5EF31C62E48800C0FC50 /* LandingViewController.m */,
 				9E22D42F1C61A42C00E88020 /* TableViewController.h */,
 				9E22D4301C61A42C00E88020 /* TableViewController.m */,
 				9E22D42C1C61A09400E88020 /* CustomLoginViewController.h */,
@@ -367,6 +372,7 @@
 				9E05B7081C613901004B7A51 /* AppDelegate.m in Sources */,
 				9E05B7051C613901004B7A51 /* main.m in Sources */,
 				9E22D4311C61A42C00E88020 /* TableViewController.m in Sources */,
+				9E9E5EF41C62E48800C0FC50 /* LandingViewController.m in Sources */,
 				9E22D42E1C61A09400E88020 /* CustomLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

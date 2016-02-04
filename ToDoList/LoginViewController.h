@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface ViewController : UIViewController
+@interface LoginViewController : UIViewController
 
 @property(strong, nonatomic) UILabel *title;
 @property(strong,nonatomic) UIButton *loginButton, *altLoginButton;
+
+@property(strong, nonatomic) UITableViewController *tableView;
 
 //user
 @property(strong,nonatomic) PFUser *user;

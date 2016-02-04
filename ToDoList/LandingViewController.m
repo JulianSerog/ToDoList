@@ -6,6 +6,8 @@
 //  Copyright © 2016 Julian Serog. All rights reserved.
 //
 
+//this view is used to determine which view to enter whether user is new or not.
+
 #import "LandingViewController.h"
 
 @interface LandingViewController ()
@@ -14,10 +16,28 @@
 
 @implementation LandingViewController
 
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:NO];
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        //login to notes page
+        [self performSegueWithIdentifier:@"start" sender:self];
+        
+    }
+    else
+    {
+        [self performSegueWithIdentifier:@"login" sender:self];
+    }
+    
+    // Do any additional setup after loading the view.
+
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
+    }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

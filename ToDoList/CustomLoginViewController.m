@@ -15,7 +15,11 @@
 
 @implementation CustomLoginViewController
 
-@synthesize username,password,email, viewLabel, user, signUp;
+@synthesize username,password,email, viewLabel, user, signUp, loginButton;
+
+//MARK: viewDidAppear
+
+
 
 //MARK: view did load
 - (void)viewDidLoad
@@ -55,14 +59,23 @@
     [self.password setPlaceholder:@"password"];
     [self.password setBackgroundColor:lightGray];
     
-    self.signUp = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width * 0.2, self.view.frame.size.height * 0.6, self.view.frame.size.width * 0.6, self.view.frame.size.height * 0.1)];
+    self.signUp = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height * 0.9, self.view.frame.size.width * 0.5, self.view.frame.size.height * 0.1)];
     self.signUp.layer.cornerRadius = 5;
     [self.signUp setTitle:@"Sign Up!" forState:UIControlStateNormal];
     [self.signUp setBackgroundColor:[UIColor blackColor]];
      [self.signUp setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.signUp addTarget:self action:@selector(addUser) forControlEvents:UIControlEventTouchUpInside];
-
     
+    //login
+    self.loginButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width * 0.5, self.view.frame.size.height * 0.9, self.view.frame.size.width * 0.5, self.view.frame.size.height * 0.1)];
+    self.loginButton.layer.cornerRadius = 5;
+    [self.loginButton setTitle:@"login" forState:UIControlStateNormal];
+    [self.loginButton setBackgroundColor:[UIColor blackColor]];
+    [self.loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
+    self.password.secureTextEntry = YES;
+    
+    [self.view addSubview:self.loginButton];
     [self.view addSubview:signUp];
     [self.view addSubview:self.viewLabel];
     [self.view addSubview:self.username];
@@ -77,6 +90,42 @@
     textField.text = @"";
 }//clears text when user clicks on textfield
 */
+
+-(void)login
+{
+    [PFUser logInWithUsernameInBackground:self.username.text password:self.password.text
+                                    block:^(PFUser *user, NSError *error) {
+                                        if (self.user)
+                                        {
+                                            //TODO: fix bug where you can't segue after creating an alert message
+                                            
+                                            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"success" message:@"you logged in" preferredStyle: UIAlertControllerStyleAlert];
+                                            //We add buttons to the alert controller by creating UIAlertActions:
+                                            UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault                                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                [self performSegueWithIdentifier:@"toTable" sender:self];
+                                            }]; //You can use a block here to handle a press on this button
+                                            [alertController addAction:actionOk];
+                                            
+                                            [self presentViewController:alertController animated:YES completion:nil];
+                                            //performSegue
+                                        }//if user is successful
+                                        else
+                                        {
+                                            // The login failed. Check error to see why.
+                                            //NSLog(@"Error logging in");
+                                            //NSLog(@"error signing up");
+                                            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"error"
+                                                                                                                     message:@"problem loggin in"
+                                                                                                              preferredStyle:UIAlertControllerStyleAlert];
+                                            //We add buttons to the alert controller by creating UIAlertActions:
+                                            UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
+                                                                                               style:UIAlertActionStyleDefault
+                                                                                             handler:nil]; //You can use a block here to handle a press on this button
+                                            [alertController addAction:actionOk];
+                                            [self presentViewController:alertController animated:YES completion:nil];
+                                        }//else - if login error
+                                    }];
+}//login
 
 
 //method to add user to backend
@@ -94,8 +143,8 @@
     {
         //make user re-enter info
         NSLog(@"user left an input empty");
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Title"
-                                                                                 message:@"Message"
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                 message:@"input a valid username/password"
                                                                           preferredStyle:UIAlertControllerStyleAlert];
         //We add buttons to the alert controller by creating UIAlertActions:
         UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
@@ -119,16 +168,22 @@
                 //We add buttons to the alert controller by creating UIAlertActions:
                 UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
                                                                    style:UIAlertActionStyleDefault
-                                                                 handler:nil]; //You can use a block here to handle a press on this button
+                                                                 handler:^(UIAlertAction * _Nonnull action) {
+                                                                     [self performSegueWithIdentifier:@"toTable" sender:self];
+                                                                 }]; //block statement here (^) for okay button handler to segue to view
                 [alertController addAction:actionOk];
                 [self presentViewController:alertController animated:YES completion:nil];
                 
+                [self performSegueWithIdentifier:@"toTable" sender:self];
+                
                 //TODO: get segue to work
+                /*
                 if (![alertController isViewLoaded]) {
                     NSLog(@"in if statement to perform segue"); //for testing purposes
                     [self performSegueWithIdentifier:@"toTable" sender:self];
 
                 }
+                 */
             }
             else
             {
@@ -149,12 +204,6 @@
     //NSLog(@"username: %@\npassword: %@\nemail: %@",user.username, user.password, user.email);
     
 }//addUser
-
-
-
-
-
-
 
 //MARK: did recieve memory warning
 - (void)didReceiveMemoryWarning

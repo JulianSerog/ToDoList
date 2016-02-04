@@ -12,18 +12,20 @@
 #define facebookBlue [UIColor colorWithRed:59/255.0 green:89/255.0 blue:152/255.0 alpha:1.0]
 
 
-@interface ViewController ()
+@interface LoginViewController ()
 
 @end
 
-@implementation ViewController
+@implementation LoginViewController
 
 @synthesize title, loginButton, altLoginButton, user;
+    
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self addElements];
+    
     
     //user = []
     

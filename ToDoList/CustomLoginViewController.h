@@ -14,5 +14,5 @@
 @property(strong, nonatomic) UILabel *viewLabel;
 @property(strong, nonatomic) UITextField *username, *email, *password;
 @property(strong, nonatomic,readwrite) PFUser *user;
-@property(strong, nonatomic) UIButton *signUp;
+@property(strong, nonatomic) UIButton *signUp, *loginButton;
 @end

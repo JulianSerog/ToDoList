@@ -13,5 +13,10 @@
 @property (strong, nonatomic) UIWindow *window;
 
 
+
+@property(strong, nonatomic) UIViewController *loginView;
+@property(strong, nonatomic) UITableViewController *tableView;
+
+
 @end
 

@@ -13,7 +13,11 @@
 
 @end
 
+
 @implementation AppDelegate
+
+@synthesize loginView, tableView;
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // [Optional] Power your app with Local Datastore. For more info, go to
@@ -26,6 +30,7 @@
     
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    //[self loadDefaultView];
     
     // ...
     return YES;
@@ -52,5 +57,34 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
+/*
+-(void)loadDefaultView
+{
+    self.loginView = [[UIViewController alloc] init];
+    self.tableView = [[UITableViewController alloc] init];
+    
+    
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        // do stuff with the user
+        //NSLog(@"%@\n\nPerformingSegue",currentUser);
+        [self.window addSubview:self.tableView.view];
+        [self.window setRootViewController:self.tableView];
+    } else {
+        // show the signup or login screen
+        [self.window addSubview:self.loginView.view];
+        [self.window setRootViewController:self.loginView];
+
+    }
+
+    
+ 
+}
+*/
+
+
+
 
 @end
