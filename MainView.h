@@ -1,0 +1,17 @@
+//
+//  MainView.h
+//  ToDoList
+//
+//  Created by Esa Serog on 3/25/16.
+//  Copyright © 2016 Julian Serog. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface MainView : UIViewController
+
+
+@property(strong, nonatomic) UIButton *addNoteButton;
+@property(strong, nonatomic) UITableView *tableView;
+
+@end

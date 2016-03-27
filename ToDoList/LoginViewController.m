@@ -8,6 +8,9 @@
 
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <ParseFacebookUtilsV4/ParseFacebookUtilsV4.h>
 
 #define facebookBlue [UIColor colorWithRed:59/255.0 green:89/255.0 blue:152/255.0 alpha:1.0]
 
@@ -77,14 +80,28 @@
 
 -(void)nextView
 {
-    [self performSegueWithIdentifier:@"toTable" sender:self];
+    [self performSegueWithIdentifier:@"toTable1" sender:self];
 }//nextView
 -(void)toCustomLogin
 {
     [self performSegueWithIdentifier:@"customLogin" sender:self];
 }//toCustomLogin
 
-
+//MARK: startFBLogin
+/*
+-(void)startFBLogin
+{
+    [PFFacebookUtils logInInBackgroundWithReadPermissions:permissions block:^(PFUser *user, NSError *error) {
+        if (!user) {
+            NSLog(@"Uh oh. The user cancelled the Facebook login.");
+        } else if (user.isNew) {
+            NSLog(@"User signed up and logged in through Facebook!");
+        } else {
+            NSLog(@"User logged in through Facebook!");
+        }
+    }];
+}//startFBLogin
+*/
 
 
 

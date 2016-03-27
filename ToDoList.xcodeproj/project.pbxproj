@@ -10,7 +10,6 @@
 		9E05B7051C613901004B7A51 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E05B7041C613901004B7A51 /* main.m */; };
 		9E05B7081C613901004B7A51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E05B7071C613901004B7A51 /* AppDelegate.m */; };
 		9E05B70B1C613901004B7A51 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E05B70A1C613901004B7A51 /* LoginViewController.m */; };
-		9E05B70E1C613901004B7A51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E05B70C1C613901004B7A51 /* Main.storyboard */; };
 		9E05B7101C613901004B7A51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E05B70F1C613901004B7A51 /* Assets.xcassets */; };
 		9E05B7131C613901004B7A51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E05B7111C613901004B7A51 /* LaunchScreen.storyboard */; };
 		9E05B71E1C613901004B7A51 /* ToDoListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E05B71D1C613901004B7A51 /* ToDoListTests.m */; };
@@ -32,8 +31,16 @@
 		9E22D4091C61943C00E88020 /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E22D4031C61943C00E88020 /* ParseTwitterUtils.framework */; };
 		9E22D40A1C61943C00E88020 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E22D4041C61943C00E88020 /* ParseUI.framework */; };
 		9E22D42E1C61A09400E88020 /* CustomLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E22D42D1C61A09400E88020 /* CustomLoginViewController.m */; };
-		9E22D4311C61A42C00E88020 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E22D4301C61A42C00E88020 /* TableViewController.m */; };
 		9E9E5EF41C62E48800C0FC50 /* LandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9E5EF31C62E48800C0FC50 /* LandingViewController.m */; };
+		9E9E5EFC1C63D9F000C0FC50 /* DocSets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9E5EF51C63D9F000C0FC50 /* DocSets */; };
+		9E9E5EFD1C63D9F000C0FC50 /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9E9E5EF61C63D9F000C0FC50 /* FacebookSDKStrings.bundle */; };
+		9E9E5EFE1C63D9F000C0FC50 /* FBAudienceNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9E5EF71C63D9F000C0FC50 /* FBAudienceNetwork.framework */; };
+		9E9E5EFF1C63D9F000C0FC50 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9E5EF81C63D9F000C0FC50 /* FBSDKCoreKit.framework */; };
+		9E9E5F001C63D9F000C0FC50 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9E5EF91C63D9F000C0FC50 /* FBSDKLoginKit.framework */; };
+		9E9E5F011C63D9F000C0FC50 /* FBSDKMessengerShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9E5EFA1C63D9F000C0FC50 /* FBSDKMessengerShareKit.framework */; };
+		9E9E5F021C63D9F000C0FC50 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9E5EFB1C63D9F000C0FC50 /* FBSDKShareKit.framework */; };
+		9EEF76661CA5F88F008825B7 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EEF76651CA5F88F008825B7 /* MainView.m */; };
+		9EEF76681CA7690F008825B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EEF76671CA7690F008825B7 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +67,6 @@
 		9E05B7071C613901004B7A51 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9E05B7091C613901004B7A51 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9E05B70A1C613901004B7A51 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		9E05B70D1C613901004B7A51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9E05B70F1C613901004B7A51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E05B7121C613901004B7A51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E05B7141C613901004B7A51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,10 +94,18 @@
 		9E22D4041C61943C00E88020 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		9E22D42C1C61A09400E88020 /* CustomLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLoginViewController.h; sourceTree = "<group>"; };
 		9E22D42D1C61A09400E88020 /* CustomLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLoginViewController.m; sourceTree = "<group>"; };
-		9E22D42F1C61A42C00E88020 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewController.h; path = ../TableViewController.h; sourceTree = "<group>"; };
-		9E22D4301C61A42C00E88020 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewController.m; path = ../TableViewController.m; sourceTree = "<group>"; };
 		9E9E5EF21C62E48800C0FC50 /* LandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandingViewController.h; sourceTree = "<group>"; };
 		9E9E5EF31C62E48800C0FC50 /* LandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingViewController.m; sourceTree = "<group>"; };
+		9E9E5EF51C63D9F000C0FC50 /* DocSets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DocSets; sourceTree = "<group>"; };
+		9E9E5EF61C63D9F000C0FC50 /* FacebookSDKStrings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FacebookSDKStrings.bundle; sourceTree = "<group>"; };
+		9E9E5EF71C63D9F000C0FC50 /* FBAudienceNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBAudienceNetwork.framework; sourceTree = "<group>"; };
+		9E9E5EF81C63D9F000C0FC50 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		9E9E5EF91C63D9F000C0FC50 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		9E9E5EFA1C63D9F000C0FC50 /* FBSDKMessengerShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKMessengerShareKit.framework; sourceTree = "<group>"; };
+		9E9E5EFB1C63D9F000C0FC50 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		9EEF76641CA5F88F008825B7 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainView.h; path = ../MainView.h; sourceTree = "<group>"; };
+		9EEF76651CA5F88F008825B7 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainView.m; path = ../MainView.m; sourceTree = "<group>"; };
+		9EEF76671CA7690F008825B7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,17 +115,22 @@
 			files = (
 				9E22D3E61C61910200E88020 /* libsqlite3.tbd in Frameworks */,
 				9E22D3E41C6190F300E88020 /* libz.tbd in Frameworks */,
+				9E9E5EFE1C63D9F000C0FC50 /* FBAudienceNetwork.framework in Frameworks */,
 				9E22D4081C61943C00E88020 /* ParseFacebookUtilsV4.framework in Frameworks */,
 				9E22D3E21C6190E900E88020 /* SystemConfiguration.framework in Frameworks */,
 				9E22D4091C61943C00E88020 /* ParseTwitterUtils.framework in Frameworks */,
 				9E22D3E01C6190DC00E88020 /* StoreKit.framework in Frameworks */,
+				9E9E5EFF1C63D9F000C0FC50 /* FBSDKCoreKit.framework in Frameworks */,
 				9E22D40A1C61943C00E88020 /* ParseUI.framework in Frameworks */,
 				9E22D3DE1C6190D500E88020 /* Security.framework in Frameworks */,
 				9E22D3DC1C6190C800E88020 /* CoreLocation.framework in Frameworks */,
 				9E22D3DA1C6190BC00E88020 /* CFNetwork.framework in Frameworks */,
+				9E9E5F011C63D9F000C0FC50 /* FBSDKMessengerShareKit.framework in Frameworks */,
 				9E22D3D81C6190B000E88020 /* AudioToolbox.framework in Frameworks */,
+				9E9E5F001C63D9F000C0FC50 /* FBSDKLoginKit.framework in Frameworks */,
 				9E22D4051C61943C00E88020 /* Bolts.framework in Frameworks */,
 				9E22D3D61C6190A300E88020 /* QuartzCore.framework in Frameworks */,
+				9E9E5F021C63D9F000C0FC50 /* FBSDKShareKit.framework in Frameworks */,
 				9E22D4061C61943C00E88020 /* Parse.framework in Frameworks */,
 				9E22D3D41C61909D00E88020 /* CoreGraphics.framework in Frameworks */,
 				9E22D4071C61943C00E88020 /* ParseFacebookUtils.framework in Frameworks */,
@@ -161,9 +180,9 @@
 			children = (
 				9E05B7061C613901004B7A51 /* AppDelegate.h */,
 				9E05B7071C613901004B7A51 /* AppDelegate.m */,
-				9E05B70C1C613901004B7A51 /* Main.storyboard */,
 				9E05B70F1C613901004B7A51 /* Assets.xcassets */,
 				9E05B7111C613901004B7A51 /* LaunchScreen.storyboard */,
+				9EEF76671CA7690F008825B7 /* Main.storyboard */,
 				9E05B7141C613901004B7A51 /* Info.plist */,
 				9E22D4111C61997300E88020 /* ViewControllers */,
 				9E05B7031C613901004B7A51 /* Supporting Files */,
@@ -200,6 +219,13 @@
 		9E22D3D21C61907300E88020 /* framework */ = {
 			isa = PBXGroup;
 			children = (
+				9E9E5EF51C63D9F000C0FC50 /* DocSets */,
+				9E9E5EF61C63D9F000C0FC50 /* FacebookSDKStrings.bundle */,
+				9E9E5EF71C63D9F000C0FC50 /* FBAudienceNetwork.framework */,
+				9E9E5EF81C63D9F000C0FC50 /* FBSDKCoreKit.framework */,
+				9E9E5EF91C63D9F000C0FC50 /* FBSDKLoginKit.framework */,
+				9E9E5EFA1C63D9F000C0FC50 /* FBSDKMessengerShareKit.framework */,
+				9E9E5EFB1C63D9F000C0FC50 /* FBSDKShareKit.framework */,
 				9E22D3FF1C61943C00E88020 /* Bolts.framework */,
 				9E22D4001C61943C00E88020 /* Parse.framework */,
 				9E22D4011C61943C00E88020 /* ParseFacebookUtils.framework */,
@@ -223,12 +249,12 @@
 		9E22D4111C61997300E88020 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				9EEF76641CA5F88F008825B7 /* MainView.h */,
+				9EEF76651CA5F88F008825B7 /* MainView.m */,
 				9E05B7091C613901004B7A51 /* LoginViewController.h */,
 				9E05B70A1C613901004B7A51 /* LoginViewController.m */,
 				9E9E5EF21C62E48800C0FC50 /* LandingViewController.h */,
 				9E9E5EF31C62E48800C0FC50 /* LandingViewController.m */,
-				9E22D42F1C61A42C00E88020 /* TableViewController.h */,
-				9E22D4301C61A42C00E88020 /* TableViewController.m */,
 				9E22D42C1C61A09400E88020 /* CustomLoginViewController.h */,
 				9E22D42D1C61A09400E88020 /* CustomLoginViewController.m */,
 			);
@@ -341,9 +367,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E9E5EFC1C63D9F000C0FC50 /* DocSets in Resources */,
+				9EEF76681CA7690F008825B7 /* Main.storyboard in Resources */,
+				9E9E5EFD1C63D9F000C0FC50 /* FacebookSDKStrings.bundle in Resources */,
 				9E05B7131C613901004B7A51 /* LaunchScreen.storyboard in Resources */,
 				9E05B7101C613901004B7A51 /* Assets.xcassets in Resources */,
-				9E05B70E1C613901004B7A51 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,8 +398,8 @@
 			files = (
 				9E05B70B1C613901004B7A51 /* LoginViewController.m in Sources */,
 				9E05B7081C613901004B7A51 /* AppDelegate.m in Sources */,
+				9EEF76661CA5F88F008825B7 /* MainView.m in Sources */,
 				9E05B7051C613901004B7A51 /* main.m in Sources */,
-				9E22D4311C61A42C00E88020 /* TableViewController.m in Sources */,
 				9E9E5EF41C62E48800C0FC50 /* LandingViewController.m in Sources */,
 				9E22D42E1C61A09400E88020 /* CustomLoginViewController.m in Sources */,
 			);
@@ -409,14 +437,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9E05B70C1C613901004B7A51 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9E05B70D1C613901004B7A51 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		9E05B7111C613901004B7A51 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -520,7 +540,7 @@
 				);
 				INFOPLIST_FILE = ToDoList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = JSSerog.ToDoList;
+				PRODUCT_BUNDLE_IDENTIFIER = JSerog.ToDoList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -535,7 +555,7 @@
 				);
 				INFOPLIST_FILE = ToDoList/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = JSSerog.ToDoList;
+				PRODUCT_BUNDLE_IDENTIFIER = JSerog.ToDoList;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

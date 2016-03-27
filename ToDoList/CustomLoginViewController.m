@@ -102,7 +102,7 @@
                                             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"success" message:@"you logged in" preferredStyle: UIAlertControllerStyleAlert];
                                             //We add buttons to the alert controller by creating UIAlertActions:
                                             UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault                                                                     handler:^(UIAlertAction * _Nonnull action) {
-                                                [self performSegueWithIdentifier:@"toTable" sender:self];
+                                                [self performSegueWithIdentifier:@"toTable2" sender:self];
                                             }]; //You can use a block here to handle a press on this button
                                             [alertController addAction:actionOk];
                                             
@@ -169,7 +169,7 @@
                 UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
                                                                    style:UIAlertActionStyleDefault
                                                                  handler:^(UIAlertAction * _Nonnull action) {
-                                                                     [self performSegueWithIdentifier:@"toTable" sender:self];
+                                                                     [self performSegueWithIdentifier:@"toTable2" sender:self];
                                                                  }]; //block statement here (^) for okay button handler to segue to view
                 [alertController addAction:actionOk];
                 [self presentViewController:alertController animated:YES completion:nil];

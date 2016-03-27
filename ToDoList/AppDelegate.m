@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+
 
 @interface AppDelegate ()
 
@@ -30,9 +33,11 @@
     
     // [Optional] Track statistics around application opens.
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-    //[self loadDefaultView];
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     
-    // ...
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
+    
     return YES;
 }
 
@@ -52,38 +57,24 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [FBSDKAppEvents activateApp];
+    
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-
-/*
--(void)loadDefaultView
-{
-    self.loginView = [[UIViewController alloc] init];
-    self.tableView = [[UITableViewController alloc] init];
-    
-    
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        // do stuff with the user
-        //NSLog(@"%@\n\nPerformingSegue",currentUser);
-        [self.window addSubview:self.tableView.view];
-        [self.window setRootViewController:self.tableView];
-    } else {
-        // show the signup or login screen
-        [self.window addSubview:self.loginView.view];
-        [self.window setRootViewController:self.loginView];
-
-    }
-
-    
- 
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
 }
-*/
-
 
 
 
