@@ -17,7 +17,6 @@
 @property(strong, nonatomic) UITableViewController *tableView;
 
 //user
-@property(strong,nonatomic) PFUser *user;
-
+@property(strong, nonatomic,readwrite) PFUser *user;
 @end
 

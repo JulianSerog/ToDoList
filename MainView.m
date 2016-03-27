@@ -7,7 +7,6 @@
 //
 
 #import "MainView.h"
-#import "LoginViewController.h"
 #import <Parse/Parse.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
@@ -16,7 +15,7 @@
 #define facebookBlue [UIColor colorWithRed:59/255.0 green:89/255.0 blue:152/255.0 alpha:1.0]
 
 
-@interface LoginViewController ()
+@interface MainView ()
 
 @end
 
@@ -45,6 +44,7 @@
     [self.addNoteButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [self.addNoteButton setTitle:@"Add a Note" forState:UIControlStateNormal];
     [self.addNoteButton addTarget:self action:@selector(addNotePressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.addNoteButton.layer setCornerRadius:4.0];
     
     
     
@@ -56,6 +56,7 @@
 -(void) addNotePressed
 {
     NSLog(@"addNotePressed");
+    [self performSegueWithIdentifier:@"toNote" sender:self];
 }
 
 

@@ -96,7 +96,7 @@
                     </tableView>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1880" y="-585"/>
+            <point key="canvasLocation" x="2316" y="-593"/>
         </scene>
         <!--Main View-->
         <scene sceneID="1eJ-OH-C5H">
@@ -111,13 +111,37 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="9F9-Jc-7Z3" kind="show" identifier="toNote" id="NHs-kJ-ILf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YkB-Aa-VYh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1271" y="683"/>
         </scene>
+        <!--Note View-->
+        <scene sceneID="Xz1-LQ-Nnl">
+            <objects>
+                <viewController id="9F9-Jc-7Z3" customClass="NoteView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qj1-Q5-2fl"/>
+                        <viewControllerLayoutGuide type="bottom" id="wJq-lI-m5U"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hso-LX-rII">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="alP-YI-E8D" kind="show" identifier="toMainView" id="yAy-GH-UPK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LJn-pJ-cff" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2299" y="683"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Wtv-AG-Bhh"/>
+        <segue reference="yAy-GH-UPK"/>
     </inferredMetricsTieBreakers>
 </document>

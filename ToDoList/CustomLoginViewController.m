@@ -60,7 +60,9 @@
     [self.password setBackgroundColor:lightGray];
     
     self.signUp = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height * 0.9, self.view.frame.size.width * 0.5, self.view.frame.size.height * 0.1)];
-    self.signUp.layer.cornerRadius = 5;
+    //self.signUp.layer.cornerRadius = 5;
+    [self.signUp.layer setBorderWidth:1.0];
+    [self.signUp.layer setBorderColor:[[UIColor whiteColor] CGColor]]; //TODO: why is CG color added here
     [self.signUp setTitle:@"Sign Up!" forState:UIControlStateNormal];
     [self.signUp setBackgroundColor:[UIColor blackColor]];
      [self.signUp setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -68,8 +70,10 @@
     
     //login
     self.loginButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width * 0.5, self.view.frame.size.height * 0.9, self.view.frame.size.width * 0.5, self.view.frame.size.height * 0.1)];
-    self.loginButton.layer.cornerRadius = 5;
-    [self.loginButton setTitle:@"login" forState:UIControlStateNormal];
+    //self.loginButton.layer.cornerRadius = 5;
+    [self.loginButton.layer setBorderWidth:1.0];
+    [self.loginButton.layer setBorderColor:[[UIColor whiteColor] CGColor]]; //TODO: why is CG color added here
+    [self.loginButton setTitle:@"Login" forState:UIControlStateNormal];
     [self.loginButton setBackgroundColor:[UIColor blackColor]];
     [self.loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
@@ -133,7 +137,7 @@
 -(void)addUser
 {
     
-    NSLog(@"add user entered");
+    NSLog(@"add user button pressed");
     user.username = self.username.text;
     user.email = self.email.text;
     user.password = self.password.text;
@@ -144,7 +148,7 @@
         //make user re-enter info
         NSLog(@"user left an input empty");
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error"
-                                                                                 message:@"input a valid username/password"
+                                                                                 message:@"please input a valid username/password"
                                                                           preferredStyle:UIAlertControllerStyleAlert];
         //We add buttons to the alert controller by creating UIAlertActions:
         UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
@@ -152,7 +156,7 @@
                                                          handler:nil]; //You can use a block here to handle a press on this button
         [alertController addAction:actionOk];
         [self presentViewController:alertController animated:YES completion:nil];
-        NSLog(@"user successfully signed up");
+        //NSLog(@"user successfully signed up");
     }//if login info is empty
     else
     {

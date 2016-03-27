@@ -19,7 +19,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:NO];
+    [super viewDidAppear:NO]; //MARK: you must use this special parent method if you want to completely skip this view - used for login views
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
         //login to notes page

@@ -59,12 +59,12 @@
     [loginButton setBackgroundColor:facebookBlue];
     [loginButton setTitle:@"Login with facebook" forState:UIControlStateNormal];
     loginButton.layer.cornerRadius = 5;
-    [loginButton addTarget:self action:@selector(nextView) forControlEvents:UIControlEventTouchUpInside];
+    [loginButton addTarget:self action:@selector(startFBLogin) forControlEvents:UIControlEventTouchUpInside];
     
     //other login in button
-    self.altLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width * 0.2, self.view.frame.size.height * 0.8, self.view.frame.size.width * 0.6, self.view.frame.size.height * 0.1)];
+    self.altLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width * 0, self.view.frame.size.height * 0.8, self.view.frame.size.width , self.view.frame.size.height * 0.1)];
     //self.altLoginButton.frame = loginButton.frame;
-    [self.altLoginButton setTitle:@"Create an account" forState:UIControlStateNormal];
+    [self.altLoginButton setTitle:@"Create an account/Sign in without facebook" forState:UIControlStateNormal];
     [self.altLoginButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.altLoginButton addTarget:self action:@selector(toCustomLogin) forControlEvents:UIControlEventTouchUpInside];
     
@@ -88,20 +88,32 @@
 }//toCustomLogin
 
 //MARK: startFBLogin
-/*
+
 -(void)startFBLogin
 {
-    [PFFacebookUtils logInInBackgroundWithReadPermissions:permissions block:^(PFUser *user, NSError *error) {
-        if (!user) {
-            NSLog(@"Uh oh. The user cancelled the Facebook login.");
-        } else if (user.isNew) {
-            NSLog(@"User signed up and logged in through Facebook!");
-        } else {
-            NSLog(@"User logged in through Facebook!");
-        }
-    }];
+    //TODO: complete
+    NSArray *permissions = [[NSArray alloc] initWithObjects:@"public_profile", @"email", @"friends", nil];
+    [PFFacebookUtils logInInBackgroundWithReadPermissions:permissions block:^(PFUser *FBuser, NSError *error) {
+    if (!FBuser)
+    {
+        NSLog(@"Uh oh. The user cancelled the Facebook login.");
+    }//user is not valid
+    else if (FBuser.isNew)
+    {
+        NSLog(@"User signed up and logged in through Facebook!");
+        //lastly, switch views
+        [self performSegueWithIdentifier:@"nextView" sender:self];
+    }//elseif user is new
+    else
+    {
+        NSLog(@"User logged in through Facebook!");
+        //lastly, switch views
+        [self performSegueWithIdentifier:@"nextView" sender:self];
+
+    }//else - user logged in through fb button
+}];
 }//startFBLogin
-*/
+
 
 
 
