@@ -86,9 +86,9 @@
 }//addUI
 
 
-- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+- (BOOL)textViewDidBeginEditing:(UITextView *)textView
 {
-    [self.view willRemoveSubview:self.placeholder];
+    [self.placeholder removeFromSuperview];
     return TRUE;
 }
 
