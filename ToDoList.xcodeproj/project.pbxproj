@@ -257,16 +257,16 @@
 			children = (
 				9EEF766D1CA7AFEB008825B7 /* Note.h */,
 				9EEF766E1CA7AFEB008825B7 /* Note.m */,
-				9EEF766A1CA7AEA2008825B7 /* NoteView.h */,
-				9EEF766B1CA7AEA2008825B7 /* NoteView.m */,
-				9EEF76641CA5F88F008825B7 /* MainView.h */,
-				9EEF76651CA5F88F008825B7 /* MainView.m */,
-				9E05B7091C613901004B7A51 /* LoginViewController.h */,
-				9E05B70A1C613901004B7A51 /* LoginViewController.m */,
 				9E9E5EF21C62E48800C0FC50 /* LandingViewController.h */,
 				9E9E5EF31C62E48800C0FC50 /* LandingViewController.m */,
+				9E05B7091C613901004B7A51 /* LoginViewController.h */,
+				9E05B70A1C613901004B7A51 /* LoginViewController.m */,
 				9E22D42C1C61A09400E88020 /* CustomLoginViewController.h */,
 				9E22D42D1C61A09400E88020 /* CustomLoginViewController.m */,
+				9EEF76641CA5F88F008825B7 /* MainView.h */,
+				9EEF76651CA5F88F008825B7 /* MainView.m */,
+				9EEF766A1CA7AEA2008825B7 /* NoteView.h */,
+				9EEF766B1CA7AEA2008825B7 /* NoteView.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

@@ -12,7 +12,8 @@
 @interface CustomLoginViewController : UIViewController <UITextFieldDelegate, UIAlertViewDelegate>
 
 @property(strong, nonatomic) UILabel *viewLabel;
-@property(strong, nonatomic) UITextField *username, *email, *password;
+@property(strong, nonatomic) UITextField *username, *email, *password, *emailResetField;
 @property(strong, nonatomic,readwrite) PFUser *user;
-@property(strong, nonatomic) UIButton *signUp, *loginButton;
+@property(strong, nonatomic) UIButton *signUp, *loginButton, *resetPassword;
+@property(strong, nonatomic) UIView *popUp;
 @end

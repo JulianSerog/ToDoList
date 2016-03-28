@@ -27,9 +27,11 @@
 
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self addUI];
+    self.instanceOfMainView = [[MainView alloc] init];
     
 }//viewDidLoad
 
@@ -37,13 +39,15 @@
 
 -(void)addUI
 {
-    [self loadNote];
+    [self loadNote]; //load note if one is available
+    
     
     //label
     self.viewTitle = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight * 0.1)];
     [self.viewTitle setPlaceholder:@"untitled note"];
     [self.viewTitle setBackgroundColor:[UIColor lightGrayColor]];
-    [self.viewTitle.layer setCornerRadius:4.0];
+    [self.viewTitle.layer setBorderColor:[[UIColor blackColor] CGColor]];
+    [self.viewTitle.layer setBorderWidth:1];
     [self.viewTitle setTextAlignment:NSTextAlignmentCenter];
     [self.viewTitle setTextColor:[UIColor whiteColor]];
     
@@ -57,23 +61,41 @@
     
     
     //textfield
-    self.noteTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, viewHeight * 0.1, viewWidth, viewHeight * 0.8)];
-    [self.noteTextField setPlaceholder:@"Enter your note here!"];
-    [self.noteTextField setTextAlignment:NSTextAlignmentCenter];
-    [self.noteTextField addTarget:self action:@selector(changeTextAlignment) forControlEvents:UIControlEventTouchUpInside];
+    self.noteTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, viewHeight * 0.1, viewWidth, viewHeight * 0.8)];
+    self.noteTextView.delegate = self;
+    [self.noteTextView setFont:[UIFont fontWithName:@"Arial-BoldMT" size:24]];
+    [self.noteTextView.layer setBorderWidth:1];
+    [self.noteTextView.layer setBorderColor:[[UIColor blackColor]CGColor]];
+    
+    
+    
+    
+    //placeholder label
+    self.placeholder = [[UILabel alloc] initWithFrame:CGRectMake(0, viewHeight * 0.4, viewWidth, viewHeight * 0.1)];
+    [self.placeholder setTextAlignment:NSTextAlignmentCenter];
+    [self.placeholder setTextColor:[UIColor blackColor]];
+    [self.placeholder setAlpha:0.5];
+    [self.placeholder setText:@"Add a note"];
     
     
     
     [self.view addSubview:self.viewTitle];
     [self.view addSubview:self.doneButton];
-    [self.view addSubview:self.noteTextField];
+    [self.view addSubview:self.noteTextView];
+    [self.view addSubview:self.placeholder];
 }//addUI
 
--(void)changeTextAlignment
-{
-    [self.noteTextField setTextAlignment:NSTextAlignmentLeft];
-}//changeTextAlignment
 
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    [self.view willRemoveSubview:self.placeholder];
+    return TRUE;
+}
+
+//-(void)textViewPressed
+//{
+//    [self.view willRemoveSubview:self.placeholder];
+//}//textViewPressed
 
 //loads note from parse -- maybe store locally?
 -(void)loadNote
@@ -85,24 +107,27 @@
     //used for trimming strings
     NSCharacterSet *charSet = [NSCharacterSet whitespaceCharacterSet];
     [self.viewTitle.text stringByTrimmingCharactersInSet:charSet];
-    [self.noteTextField.text stringByTrimmingCharactersInSet:charSet];
+    [self.noteTextView.text stringByTrimmingCharactersInSet:charSet];
     
     //check if valid name and contents
-    if ([self.viewTitle isEqual:@""] && ![self.noteTextField.text isEqualToString:@""])
+    if ([self.noteTextView isEqual:@""] && ![self.noteTextView.text isEqualToString:@""])
     {
         self.note.noteTitle = self.viewTitle.text;
-        self.note.contents = self.noteTextField.text;
+        self.note.contents = self.noteTextView.text;
+        NSLog(@"valid note: Title: %@ Body: %@", self.viewTitle.text, self.noteTextView.text);
         //TODO: upload to parse
     }//if - title is default, but body is not
-    else if(![self.viewTitle.text isEqualToString:@""] && [self.noteTextField.text isEqualToString:@""])
+    else if(![self.viewTitle.text isEqualToString:@""] && [self.noteTextView.text isEqualToString:@""])
     {
         self.note.noteTitle = self.viewTitle.text;
-        self.note.contents = self.noteTextField.text;
+        self.note.contents = self.noteTextView.text;
+        NSLog(@"valid note: Title: %@ Body: %@", self.viewTitle.text, self.noteTextView.text);
     }//body is default but title is not
-    else if(![self.viewTitle.text isEqualToString:@"untitled note"] && ![self.viewTitle.text isEqualToString:@""] && ![self.noteTextField.text isEqualToString:@""])
+    else if(![self.viewTitle.text isEqualToString:@"untitled note"] && ![self.viewTitle.text isEqualToString:@""] && ![self.noteTextView.text isEqualToString:@""])
     {
         self.note.noteTitle = self.viewTitle.text;
-        self.note.contents = self.noteTextField.text;
+        self.note.contents = self.noteTextView.text;
+        NSLog(@"valid note: Title: %@ Body: %@", self.viewTitle.text, self.noteTextView.text);
     }//neither title or body are defaults
     else
     {
@@ -124,3 +149,4 @@
 
 
 @end
+

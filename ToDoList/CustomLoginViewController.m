@@ -15,10 +15,6 @@
 
 @implementation CustomLoginViewController
 
-@synthesize username,password,email, viewLabel, user, signUp, loginButton;
-
-//MARK: viewDidAppear
-
 
 
 //MARK: view did load
@@ -33,7 +29,7 @@
 -(void)addElements
 {
     //init parse user
-    user = [[PFUser alloc]init];
+    self.user = [[PFUser alloc]init];
     
     //label
     self.viewLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height * 0.10)];
@@ -44,13 +40,13 @@
     
     self.email = [[UITextField alloc]initWithFrame:CGRectMake(self.view.frame.size.width * 0.2, self.view.frame.size.height * 0.3, self.view.frame.size.width * 0.6, self.view.frame.size.height * 0.05)];
     [self.email setPlaceholder:@"Email address"];
-    email.layer.cornerRadius = 5;
+    self.email.layer.cornerRadius = 5;
     [self.email setBackgroundColor:lightGray];
     
     //username
     self.username = [[UITextField alloc] initWithFrame:CGRectMake(self.view.frame.size.width * 0.2, self.view.frame.size.height * 0.4, self.view.frame.size.width * 0.6, self.view.frame.size.height * 0.05)];
     [self.username setPlaceholder:@"username"];
-    username.layer.cornerRadius = 5;
+    self.username.layer.cornerRadius = 5;
     [self.username setBackgroundColor:lightGray];
     
     //password
@@ -59,6 +55,17 @@
     [self.password setPlaceholder:@"password"];
     [self.password setBackgroundColor:lightGray];
     
+    
+    //reset password
+    self.resetPassword = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width * 0.2, self.view.frame.size.height * 0.6, self.view.frame.size.width * 0.6, self.view.frame.size.height * 0.1)];
+    [self.resetPassword setTitle:@"Reset Your Password" forState:UIControlStateNormal];
+    [self.resetPassword addTarget:self action:@selector(resetPasswordPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.resetPassword setBackgroundColor:[UIColor blackColor]];
+    [self.resetPassword.layer setCornerRadius:5.0];
+    
+    
+    
+    //sign up button
     self.signUp = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height * 0.9, self.view.frame.size.width * 0.5, self.view.frame.size.height * 0.1)];
     //self.signUp.layer.cornerRadius = 5;
     [self.signUp.layer setBorderWidth:1.0];
@@ -79,8 +86,12 @@
     [self.loginButton addTarget:self action:@selector(login) forControlEvents:UIControlEventTouchUpInside];
     self.password.secureTextEntry = YES;
     
+    
+    
+    
+    [self.view addSubview:self.resetPassword];
     [self.view addSubview:self.loginButton];
-    [self.view addSubview:signUp];
+    [self.view addSubview:self.signUp];
     [self.view addSubview:self.viewLabel];
     [self.view addSubview:self.username];
     [self.view addSubview:self.email];
@@ -99,7 +110,7 @@
 {
     [PFUser logInWithUsernameInBackground:self.username.text password:self.password.text
                                     block:^(PFUser *user, NSError *error) {
-                                        if (self.user)
+                                        if (user)
                                         {
                                             //TODO: fix bug where you can't segue after creating an alert message
                                             
@@ -131,19 +142,17 @@
                                     }];
 }//login
 
-
 //method to add user to backend
 //MARK: addUser
 -(void)addUser
 {
-    
     NSLog(@"add user button pressed");
-    user.username = self.username.text;
-    user.email = self.email.text;
-    user.password = self.password.text;
+    self.user.username = self.username.text;
+    self.user.email = self.email.text;
+    self.user.password = self.password.text;
     
     
-    if ([user.username isEqual: @""] || [user.password isEqual: @""] || [user.password isEqual: @""] || [user.username isEqual: NULL])
+    if ([self.user.username isEqual: @""] || [self.user.password isEqual: @""] || [self.user.password isEqual: @""] || [self.user.username isEqual: NULL])
     {
         //make user re-enter info
         NSLog(@"user left an input empty");
@@ -161,7 +170,7 @@
     else
     {
         //otherwise login
-        [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [self.user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error)
             {   // Hooray! Let them use the app now.
                 //perform segue
@@ -178,17 +187,9 @@
                 [alertController addAction:actionOk];
                 [self presentViewController:alertController animated:YES completion:nil];
                 
-                [self performSegueWithIdentifier:@"toTable" sender:self];
+//                [self performSegueWithIdentifier:@"toTable" sender:self];
                 
-                //TODO: get segue to work
-                /*
-                if (![alertController isViewLoaded]) {
-                    NSLog(@"in if statement to perform segue"); //for testing purposes
-                    [self performSegueWithIdentifier:@"toTable" sender:self];
-
-                }
-                 */
-            }
+            }//if no errors
             else
             {
                 NSLog(@"error signing up");
@@ -203,7 +204,7 @@
                 [self presentViewController:alertController animated:YES completion:nil];
             }//else for if there was an error
         }];
-    }
+    }//else statement
     
     //NSLog(@"username: %@\npassword: %@\nemail: %@",user.username, user.password, user.email);
     
@@ -215,6 +216,61 @@
     [super didReceiveMemoryWarning];
     
 }//didRecieveMemoryWarning
+
+//password reset
+-(void)resetPasswordPressed
+{
+    //have a pop-up subview with a textfield to store the email
+    self.popUp = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width * 0.1, self.view.frame.size.height * 0.15, self.view.frame.size.width * 0.8, self.view.frame.size.height * 0.65)];
+    [self.popUp setBackgroundColor:[UIColor blackColor]];
+    //[popUp setAlpha:0.5];
+    [self.popUp.layer setCornerRadius:10.0];
+    
+    
+    //textfield
+    self.emailResetField = [[UITextField alloc] initWithFrame:CGRectMake(self.popUp.frame.size.width * 0.1, self.popUp.frame.size.height * 0.3, self.popUp.frame.size.width * 0.8, self.popUp.frame.size.height * 0.1)];
+    [self.emailResetField setPlaceholder:@"email"];
+    [self.emailResetField.layer setCornerRadius:10.0];
+    [self.emailResetField setBackgroundColor:lightGray];
+    
+    //submit button
+    UIButton *submit = [[UIButton alloc] initWithFrame:CGRectMake(self.popUp.frame.size.width * 0.2, self.popUp.frame.size.height * 0.7, self.popUp.frame.size.width * 0.6, self.popUp.frame.size.height * 0.1)];
+    [submit.layer setCornerRadius:10.0];
+    [submit setTitle:@"submit" forState:UIControlStateNormal];
+    [submit setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [submit setBackgroundColor:[UIColor whiteColor]];
+    [submit addTarget:self action:@selector(sendEmailToParse) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    [self.popUp addSubview:submit];
+    [self.popUp addSubview:self.emailResetField];
+    [self.view addSubview: self.popUp];
+}//resetPasswordPressed
+
+//for resetPasswordPressed method
+-(void)sendEmailToParse
+{
+    NSLog(@"emailresetfield: %@", self.emailResetField.text);
+    [PFUser requestPasswordResetForEmail:self.emailResetField.text];
+    
+    
+    //alert user email has been sent to change password - use alert handlers with blocks
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Email Sent"
+                                                                             message:@"If you do not recieve an email then no account exists for that email"
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    //We add buttons to the alert controller by creating UIAlertActions:
+    UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction * _Nonnull action) {
+                                                         [self.popUp removeFromSuperview];
+                                                     }]; //block statement here (^) for okay button handler to segue to view
+    [alertController addAction:actionOk];
+    [self presentViewController:alertController animated:YES completion:nil];
+
+}//sendEmailToParse
+
+
 
 /*
 #pragma mark - Navigation
