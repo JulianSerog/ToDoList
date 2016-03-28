@@ -29,6 +29,7 @@
 -(void)addElements
 {
     //init parse user
+    [self.view setBackgroundColor:[UIColor lightGrayColor]];
     self.user = [[PFUser alloc]init];
     
     //label
@@ -178,20 +179,24 @@
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"success"
                                                                                          message:@"you signed up"
                                                                                   preferredStyle:UIAlertControllerStyleAlert];
+                
+                //MARK: block declaration practice -- blocks can be declared early on and used by a variable name later
+                //in this case the block is named alertActionSegue, it returns void, and it takes in a
+                //UIAlertAction *_Nonnull object named action
+                void (^alertActionSegue)(UIAlertAction *_Nonnull action) = ^(UIAlertAction * _Nonnull action) {
+                    [self performSegueWithIdentifier:@"toTable2" sender:self];
+                }; //block statement here (^) for okay button handler to segue to view
                 //We add buttons to the alert controller by creating UIAlertActions:
                 UIAlertAction *actionOk = [UIAlertAction actionWithTitle:@"Ok"
                                                                    style:UIAlertActionStyleDefault
-                                                                 handler:^(UIAlertAction * _Nonnull action) {
-                                                                     [self performSegueWithIdentifier:@"toTable2" sender:self];
-                                                                 }]; //block statement here (^) for okay button handler to segue to view
+                                                                 handler:alertActionSegue]; //block used here that was previously declared, you could declare it on the spot if you wanted to
                 [alertController addAction:actionOk];
                 [self presentViewController:alertController animated:YES completion:nil];
-                
-//                [self performSegueWithIdentifier:@"toTable" sender:self];
                 
             }//if no errors
             else
             {
+                //if there was an error signing up
                 NSLog(@"error signing up");
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"error"
                                                                                          message:@"problem signing up"
@@ -226,6 +231,11 @@
     //[popUp setAlpha:0.5];
     [self.popUp.layer setCornerRadius:10.0];
     
+    //label
+    UILabel *emailResetLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.popUp.frame.size.width * 0.1, self.popUp.frame.size.height * 0.1, self.popUp.frame.size.width * 0.8, self.popUp.frame.size.height * 0.1)];
+    [emailResetLabel setText:@"Reset Password Request"];
+    [emailResetLabel setTextColor:[UIColor whiteColor]];
+    [emailResetLabel setTextAlignment:NSTextAlignmentCenter];
     
     //textfield
     self.emailResetField = [[UITextField alloc] initWithFrame:CGRectMake(self.popUp.frame.size.width * 0.1, self.popUp.frame.size.height * 0.3, self.popUp.frame.size.width * 0.8, self.popUp.frame.size.height * 0.1)];
@@ -240,12 +250,18 @@
     [submit setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [submit setBackgroundColor:[UIColor whiteColor]];
     [submit addTarget:self action:@selector(sendEmailToParse) forControlEvents:UIControlEventTouchUpInside];
+
     
-    
-    
+    //add elements to pop up view
     [self.popUp addSubview:submit];
     [self.popUp addSubview:self.emailResetField];
-    [self.view addSubview: self.popUp];
+    [self.popUp addSubview:emailResetLabel];
+    //use animations to show pop up view
+    [UIView transitionWithView:self.view duration:0.5
+                       options:UIViewAnimationOptionTransitionCrossDissolve //change to whatever animation you like
+                    animations:^ { [self.view addSubview:self.popUp]; }
+                    completion:nil];
+
 }//resetPasswordPressed
 
 //for resetPasswordPressed method

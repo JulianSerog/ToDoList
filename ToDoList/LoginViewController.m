@@ -47,6 +47,8 @@
 
 -(void) addElements
 {
+    
+    [self.view setBackgroundColor:[UIColor lightGrayColor]];
     //label
     self.title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height * 0.10)];
     [self.title setTextAlignment:NSTextAlignmentCenter];

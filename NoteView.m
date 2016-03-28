@@ -42,9 +42,10 @@
     [self loadNote]; //load note if one is available
     
     
-    //label
+    //textfield title
     self.viewTitle = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight * 0.1)];
-    [self.viewTitle setPlaceholder:@"untitled note"];
+    //[self.viewTitle setPlaceholder:@"untitled note"];
+    [self.viewTitle setText:@"Untitled Note"]; //MARK: might have to change later on
     [self.viewTitle setBackgroundColor:[UIColor lightGrayColor]];
     [self.viewTitle.layer setBorderColor:[[UIColor blackColor] CGColor]];
     [self.viewTitle.layer setBorderWidth:1];

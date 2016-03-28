@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="319" y="-496"/>
         </scene>
-        <!--rootLoginView-->
+        <!--main login view-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="rootLoginView" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController title="rootLoginView" id="BYZ-38-t0r" userLabel="main login view" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -142,6 +142,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="yAy-GH-UPK"/>
+        <segue reference="FLr-EZ-3O9"/>
     </inferredMetricsTieBreakers>
 </document>
