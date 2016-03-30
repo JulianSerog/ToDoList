@@ -1,4 +1,4 @@
 # ToDoList
-simple todo list using parse for cloud services
+simple todo list made in Objective-C using parse for cloud services
 
 A notes app with cloud services
