@@ -91,19 +91,16 @@
 {
     [self.placeholder removeFromSuperview];
     return TRUE;
-}
+}//textViewDidBeginEditing
 
-//-(void)textViewPressed
-//{
-//    [self.view willRemoveSubview:self.placeholder];
-//}//textViewPressed
 
-//loads note from parse -- maybe store locally?
+//TODO: implement - loads note from parse
 -(void)loadNote
 {
     //TODO: implement
 }//loadNote
--(void)saveNote
+
+-(void)parseNote
 {
     //used for trimming strings
     NSCharacterSet *charSet = [NSCharacterSet whitespaceCharacterSet];
@@ -111,37 +108,62 @@
     [self.noteTextView.text stringByTrimmingCharactersInSet:charSet];
     
     //check if valid name and contents
-    if ([self.noteTextView isEqual:@""] && ![self.noteTextView.text isEqualToString:@""])
+    if (![self.noteTextView isEqual:@""] && ![self.noteTextView.text isEqualToString:@""])
     {
-        self.note.noteTitle = self.viewTitle.text;
-        self.note.contents = self.noteTextView.text;
-        NSLog(@"valid note: Title: %@ Body: %@", self.viewTitle.text, self.noteTextView.text);
+        NSLog(@"valid note1: Title: %@ Body: %@", self.viewTitle.text, self.noteTextView.text);
+        [self saveNoteWithTitle:self.viewTitle.text contents:self.noteTextView.text];
         //TODO: upload to parse
     }//if - title is default, but body is not
     else if(![self.viewTitle.text isEqualToString:@""] && [self.noteTextView.text isEqualToString:@""])
     {
-        self.note.noteTitle = self.viewTitle.text;
-        self.note.contents = self.noteTextView.text;
-        NSLog(@"valid note: Title: %@ Body: %@", self.viewTitle.text, self.noteTextView.text);
+        NSLog(@"valid note2: Title: %@ Body: %@", self.viewTitle.text, self.noteTextView.text);
+        [self saveNoteWithTitle:self.viewTitle.text contents:self.noteTextView.text];
     }//body is default but title is not
     else if(![self.viewTitle.text isEqualToString:@"untitled note"] && ![self.viewTitle.text isEqualToString:@""] && ![self.noteTextView.text isEqualToString:@""])
     {
-        self.note.noteTitle = self.viewTitle.text;
-        self.note.contents = self.noteTextView.text;
-        NSLog(@"valid note: Title: %@ Body: %@", self.viewTitle.text, self.noteTextView.text);
+        NSLog(@"valid note3: Title: %@ Body: %@", self.viewTitle.text, self.noteTextView.text);
+        [self saveNoteWithTitle:self.viewTitle.text contents:self.noteTextView.text];
     }//neither title or body are defaults
     else
     {
         NSLog(@"Not a valid note, must have a valid title or some text in the body");
     }//not a valid note -- test
-}//saveNote
+}//parseNote
+
+//TODO: fix method
+-(void)saveNoteWithTitle:(NSString *)noteTitle contents:(NSString *)noteBody
+{
+    PFObject *PFnote = [PFObject objectWithClassName:@"PFnote"];
+    NSLog(@"Note title %@", noteTitle);
+    PFnote[@"title"] = noteTitle;
+    PFnote[@"contents"] = noteBody;
+    
+    //save locally first
+    [PFnote pinInBackground];
+    
+    //attempt to upload to cloud
+    [PFnote saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded)
+        {
+            // The object has been saved.
+            NSLog(@"Succeeded in saving note to the backend!");
+        }//if succeeded in background
+        else
+        {
+            // There was a problem, check error.description and save eventually
+            [PFnote saveEventually];
+            NSLog(@"%@",error);
+        }//else - if there was an error
+    }]; //block
+}//saveNoteWithTitle
+
 
 
 -(void) doneButtonPressed
 {
     //should segue out of view, and change the title of the NoteView to the note object title
     //or if the string != "untitled note" && not white space/empty set it to the newly set title
-    [self saveNote];
+    [self parseNote];
     [self performSegueWithIdentifier:@"toMainView" sender:self];
 }//doneButtonPressed
 

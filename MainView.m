@@ -50,10 +50,22 @@
     [self.addNoteButton setTitle:@"Add a Note" forState:UIControlStateNormal];
     [self.addNoteButton addTarget:self action:@selector(addNotePressed) forControlEvents:UIControlEventTouchUpInside];
     
+    //testing a table cell
+    UITableViewCell *testCell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height * 0.05, self.tableView.frame.size.width, self.tableView.frame.size.height * 0.1)];
+    [testCell setBackgroundColor:[UIColor blackColor]];
+    [self.tableView addSubview:testCell];
     
+    //addElements
     [self.view addSubview:self.addNoteButton];
     [self.view addSubview:self.tableView];
-}//addElements
+
+   }//addElements
+
+//TODO:implement
+-(void)addNotes
+{
+    
+}
 
 
 -(void) addNotePressed

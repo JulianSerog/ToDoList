@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Note.h"
+
 #import "MainView.h"
 
 @interface NoteView : UIViewController <UITextFieldDelegate>
@@ -15,7 +15,6 @@
 
 @property(strong,nonatomic) UIButton *doneButton;
 @property(strong,nonatomic) UITextView *noteTextView;
-@property(strong,nonatomic) Note *note;
 @property(strong, nonatomic) UITextField *viewTitle;
 @property(strong, nonatomic) MainView *instanceOfMainView;
 @property(strong, nonatomic) UILabel *placeholder;

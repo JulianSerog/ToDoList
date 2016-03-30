@@ -42,7 +42,6 @@
 		9EEF76661CA5F88F008825B7 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EEF76651CA5F88F008825B7 /* MainView.m */; };
 		9EEF76681CA7690F008825B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EEF76671CA7690F008825B7 /* Main.storyboard */; };
 		9EEF766C1CA7AEA2008825B7 /* NoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EEF766B1CA7AEA2008825B7 /* NoteView.m */; };
-		9EEF766F1CA7AFEB008825B7 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EEF766E1CA7AFEB008825B7 /* Note.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,8 +109,6 @@
 		9EEF76671CA7690F008825B7 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		9EEF766A1CA7AEA2008825B7 /* NoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NoteView.h; path = ../NoteView.h; sourceTree = "<group>"; };
 		9EEF766B1CA7AEA2008825B7 /* NoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NoteView.m; path = ../NoteView.m; sourceTree = "<group>"; };
-		9EEF766D1CA7AFEB008825B7 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
-		9EEF766E1CA7AFEB008825B7 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,8 +252,6 @@
 		9E22D4111C61997300E88020 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				9EEF766D1CA7AFEB008825B7 /* Note.h */,
-				9EEF766E1CA7AFEB008825B7 /* Note.m */,
 				9E9E5EF21C62E48800C0FC50 /* LandingViewController.h */,
 				9E9E5EF31C62E48800C0FC50 /* LandingViewController.m */,
 				9E05B7091C613901004B7A51 /* LoginViewController.h */,
@@ -413,7 +408,6 @@
 				9E9E5EF41C62E48800C0FC50 /* LandingViewController.m in Sources */,
 				9E22D42E1C61A09400E88020 /* CustomLoginViewController.m in Sources */,
 				9EEF766C1CA7AEA2008825B7 /* NoteView.m in Sources */,
-				9EEF766F1CA7AFEB008825B7 /* Note.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
