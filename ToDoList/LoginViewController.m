@@ -70,8 +70,15 @@
     [self.altLoginButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.altLoginButton addTarget:self action:@selector(toCustomLogin) forControlEvents:UIControlEventTouchUpInside];
     
+    //logo
+    self.logoView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width * .30, self.view.frame.size.height * 0.2, self.view.frame.size.width * 0.4, self.view.frame.size.height * 0.3)];
+    self.logo = [UIImage imageNamed:@"logo.png"];
+    [self.logoView setImage:self.logo];
+    
+    
     
     //add to view
+    [self.view addSubview:self.logoView];
     [self.view addSubview:self.title];
     [self.view addSubview:self.loginButton];
     [self.view addSubview:self.altLoginButton];
@@ -117,7 +124,10 @@
 }//startFBLogin
 
 
-
+-(void)imagePressed
+{
+    NSLog(@"image pressed");
+}
 
 
 

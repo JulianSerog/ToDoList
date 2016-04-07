@@ -50,6 +50,7 @@
     [self.viewTitle.layer setBorderColor:[[UIColor blackColor] CGColor]];
     [self.viewTitle.layer setBorderWidth:1];
     [self.viewTitle setTextAlignment:NSTextAlignmentCenter];
+    [self.viewTitle setDelegate:self];
     [self.viewTitle setTextColor:[UIColor whiteColor]];
     
     
@@ -63,7 +64,7 @@
     
     //textfield
     self.noteTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, viewHeight * 0.1, viewWidth, viewHeight * 0.8)];
-    self.noteTextView.delegate = self;
+    [self.noteTextView setDelegate:self];
     [self.noteTextView setFont:[UIFont fontWithName:@"Arial-BoldMT" size:24]];
     [self.noteTextView.layer setBorderWidth:1];
     [self.noteTextView.layer setBorderColor:[[UIColor blackColor]CGColor]];
@@ -87,11 +88,15 @@
 }//addUI
 
 
-- (BOOL)textViewDidBeginEditing:(UITextView *)textView
+- (void)textViewDidBeginEditing:(UITextView *)textView
 {
     [self.placeholder removeFromSuperview];
-    return TRUE;
 }//textViewDidBeginEditing
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [self.viewTitle setText:@""]; //gives default value
+}//textFieldDidBeginEditing
 
 
 //TODO: implement - loads note from parse

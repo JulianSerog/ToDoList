@@ -10,7 +10,7 @@
 
 #import "MainView.h"
 
-@interface NoteView : UIViewController <UITextFieldDelegate>
+@interface NoteView : UIViewController <UITextViewDelegate, UITextFieldDelegate>
 
 
 @property(strong,nonatomic) UIButton *doneButton;

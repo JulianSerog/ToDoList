@@ -31,6 +31,7 @@
 		9E22D4091C61943C00E88020 /* ParseTwitterUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E22D4031C61943C00E88020 /* ParseTwitterUtils.framework */; };
 		9E22D40A1C61943C00E88020 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E22D4041C61943C00E88020 /* ParseUI.framework */; };
 		9E22D42E1C61A09400E88020 /* CustomLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E22D42D1C61A09400E88020 /* CustomLoginViewController.m */; };
+		9E4F7DAE1CB6E0D6001DE89A /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E4F7DAD1CB6E0D6001DE89A /* logo.png */; };
 		9E9E5EF41C62E48800C0FC50 /* LandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9E5EF31C62E48800C0FC50 /* LandingViewController.m */; };
 		9E9E5EFC1C63D9F000C0FC50 /* DocSets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9E5EF51C63D9F000C0FC50 /* DocSets */; };
 		9E9E5EFD1C63D9F000C0FC50 /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9E9E5EF61C63D9F000C0FC50 /* FacebookSDKStrings.bundle */; };
@@ -95,6 +96,7 @@
 		9E22D4041C61943C00E88020 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		9E22D42C1C61A09400E88020 /* CustomLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLoginViewController.h; sourceTree = "<group>"; };
 		9E22D42D1C61A09400E88020 /* CustomLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLoginViewController.m; sourceTree = "<group>"; };
+		9E4F7DAD1CB6E0D6001DE89A /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		9E9E5EF21C62E48800C0FC50 /* LandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandingViewController.h; sourceTree = "<group>"; };
 		9E9E5EF31C62E48800C0FC50 /* LandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingViewController.m; sourceTree = "<group>"; };
 		9E9E5EF51C63D9F000C0FC50 /* DocSets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DocSets; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				9E05B7111C613901004B7A51 /* LaunchScreen.storyboard */,
 				9EEF76671CA7690F008825B7 /* Main.storyboard */,
 				9E05B7141C613901004B7A51 /* Info.plist */,
+				9E4F7DAD1CB6E0D6001DE89A /* logo.png */,
 				9E22D4111C61997300E88020 /* ViewControllers */,
 				9E05B7031C613901004B7A51 /* Supporting Files */,
 			);
@@ -374,6 +377,7 @@
 			files = (
 				9E9E5EFC1C63D9F000C0FC50 /* DocSets in Resources */,
 				9EEF76681CA7690F008825B7 /* Main.storyboard in Resources */,
+				9E4F7DAE1CB6E0D6001DE89A /* logo.png in Resources */,
 				9E9E5EFD1C63D9F000C0FC50 /* FacebookSDKStrings.bundle in Resources */,
 				9E05B7131C613901004B7A51 /* LaunchScreen.storyboard in Resources */,
 				9E05B7101C613901004B7A51 /* Assets.xcassets in Resources */,

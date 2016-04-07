@@ -13,9 +13,9 @@
 
 @property(strong, nonatomic) UILabel *title;
 @property(strong,nonatomic) UIButton *loginButton, *altLoginButton;
-
+@property(strong, nonatomic) UIImage *logo;
 @property(strong, nonatomic) UITableViewController *tableView;
-
+@property(strong, nonatomic) UIImageView *logoView;
 //user
 @property(strong, nonatomic,readwrite) PFUser *user;
 @end
