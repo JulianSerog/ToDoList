@@ -12,6 +12,7 @@
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <ParseFacebookUtilsV4/ParseFacebookUtilsV4.h>
 
+
 #define viewWidth self.view.frame.size.width
 #define viewHeight self.view.frame.size.height
 
@@ -145,6 +146,9 @@
     
     //save locally first
     [PFnote pinInBackground];
+    [[NSUserDefaults standardUserDefaults] setObject:noteTitle forKey:@"noteTitle"];
+    [[NSUserDefaults standardUserDefaults] setObject:noteBody forKey:@"noteBody"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     //attempt to upload to cloud
     [PFnote saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

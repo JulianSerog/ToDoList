@@ -16,4 +16,6 @@
 @property(strong, nonatomic,readwrite) PFUser *user;
 @property(strong, nonatomic) UIButton *signUp, *loginButton, *resetPassword;
 @property(strong, nonatomic) UIView *popUp;
+@property(strong, nonatomic) UIImageView *logoView;
+@property(strong, nonatomic) UIImage *logo;
 @end

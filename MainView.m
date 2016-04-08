@@ -27,10 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self addElements];
-    
-    
 }//viewDidLoad
 
 
@@ -52,14 +49,42 @@
     
     //testing a table cell
     UITableViewCell *testCell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height * 0.05, self.tableView.frame.size.width, self.tableView.frame.size.height * 0.1)];
-    [testCell setBackgroundColor:[UIColor blackColor]];
+    
+    //get items from locally saved list
+    NSString *value = [[NSUserDefaults standardUserDefaults] stringForKey:@"noteTitle"];
+    NSLog(@"From main Menu, saved item: %@",value);
     [self.tableView addSubview:testCell];
     
     //addElements
     [self.view addSubview:self.addNoteButton];
     [self.view addSubview:self.tableView];
 
-   }//addElements
+}//addElements
+
+
+//MARK: Create table view
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}//numberOfSectionsInTableView
+/*
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    
+}//numberOfRowsInSection
+ */
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+}//heightForRowAtIndexPath
+/*
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}//cellForRowAtIndexPath
+ */
+
+
 
 //TODO:implement
 -(void)addNotes

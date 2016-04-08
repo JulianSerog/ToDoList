@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainView : UIViewController
+@interface MainView : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 
 @property(strong, nonatomic) UIButton *addNoteButton;

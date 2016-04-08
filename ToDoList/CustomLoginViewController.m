@@ -38,6 +38,7 @@
     [self.viewLabel setText:@"Create an Account!"];
     [self.viewLabel setBackgroundColor:[UIColor blackColor]];
     [self.viewLabel setTextColor:[UIColor whiteColor]];
+    [self.viewLabel setAlpha:0.35];
     
     self.email = [[UITextField alloc]initWithFrame:CGRectMake(self.view.frame.size.width * 0.2, self.view.frame.size.height * 0.3, self.view.frame.size.width * 0.6, self.view.frame.size.height * 0.05)];
     [self.email setPlaceholder:@"Email address"];
@@ -88,8 +89,14 @@
     self.password.secureTextEntry = YES;
     
     
+    //logo
+    self.logoView = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width * .4, self.view.frame.size.height * 0.125, self.view.frame.size.width * 0.2, self.view.frame.size.height * 0.15)];
+    self.logo = [UIImage imageNamed:@"logo.png"];
+    [self.logoView setImage:self.logo];
+
     
     
+    [self.view addSubview:self.logoView];
     [self.view addSubview:self.resetPassword];
     [self.view addSubview:self.loginButton];
     [self.view addSubview:self.signUp];
@@ -98,14 +105,6 @@
     [self.view addSubview:self.email];
     [self.view addSubview:self.password];
 }//addElements
-
-//MARK: did begin editing -- commented out for now for personal taste
-/*
--(void) textFieldDidBeginEditing:(UITextField *)textField
-{
-    textField.text = @"";
-}//clears text when user clicks on textfield
-*/
 
 -(void)login
 {
