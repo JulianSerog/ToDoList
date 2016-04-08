@@ -7,11 +7,6 @@
 //
 
 #import "LoginViewController.h"
-#import <Parse/Parse.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import <ParseFacebookUtilsV4/ParseFacebookUtilsV4.h>
-
 #define facebookBlue [UIColor colorWithRed:59/255.0 green:89/255.0 blue:152/255.0 alpha:1.0]
 
 
@@ -23,6 +18,12 @@
 
 @synthesize title, loginButton, altLoginButton, user;
     
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self checkFacebook];
+}//viewWillAppear
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,6 +43,8 @@
     NSLog(@"%@",[testObject description]);
      */
     
+    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(checkFacebook) userInfo:nil repeats:YES];
+    
 }
 
 
@@ -57,13 +60,7 @@
     [self.title setBackgroundColor:[UIColor blackColor]];
     [self.title setTextColor:[UIColor whiteColor]];
     
-    //button
-    loginButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width * 0.2, self.view.frame.size.height * 0.7, self.view.frame.size.width * 0.6, self.view.frame.size.height * 0.1)];
-    [loginButton setBackgroundColor:facebookBlue];
-    [loginButton setTitle:@"Login with facebook" forState:UIControlStateNormal];
-    loginButton.layer.cornerRadius = 5;
-    [loginButton addTarget:self action:@selector(startFBLogin) forControlEvents:UIControlEventTouchUpInside];
-    
+
     //other login in button
     self.altLoginButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width * 0, self.view.frame.size.height * 0.8, self.view.frame.size.width , self.view.frame.size.height * 0.1)];
     //self.altLoginButton.frame = loginButton.frame;
@@ -77,11 +74,16 @@
     [self.logoView setImage:self.logo];
     
     
+    //FBLoginButton
+    self.loginButton = [[FBSDKLoginButton alloc] init];
+    self.loginButton.readPermissions = @[@"public_profile", @"email", @"user_friends"]; //TODO: implement permissions
+    [self.loginButton setFrame:CGRectMake(self.view.frame.size.width * 0.2, self.view.frame.size.height * 0.7, self.view.frame.size.width * 0.6, self.view.frame.size.height * 0.1)];
     
     //add to view
+    [self.view addSubview:self.loginButton];
     [self.view addSubview:self.logoView];
     [self.view addSubview:self.title];
-    [self.view addSubview:self.loginButton];
+    //[self.view addSubview:self.loginButton];  //TODO: get original login button working
     [self.view addSubview:self.altLoginButton];
     
     
@@ -125,10 +127,12 @@
 }//startFBLogin
 
 
--(void)imagePressed
+-(void)checkFacebook
 {
-    NSLog(@"image pressed");
-}
+    if([FBSDKAccessToken currentAccessToken]){
+        [self performSegueWithIdentifier:@"toTable1" sender:self];
+    }//if
+}//checkFacebook
 
 
 

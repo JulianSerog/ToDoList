@@ -20,6 +20,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:NO]; //MARK: you must use this special parent method if you want to completely skip this view - used for login views
+    [self checkFacebook];
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
         //login to notes page
@@ -35,9 +36,18 @@
 
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    }
+}
+
+-(void)checkFacebook
+{
+    if([FBSDKAccessToken currentAccessToken]){
+        [self performSegueWithIdentifier:@"start" sender:self];
+    }//if
+}//checkFacebook
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
