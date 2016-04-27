@@ -13,6 +13,6 @@
 
 @property(strong, nonatomic) UIButton *addNoteButton;
 @property(strong, nonatomic) UITableView *tableView;
-@property(strong, nonatomic) NSMutableArray *noteArray;
+@property(strong, nonatomic) NSArray *noteArray;
 
 @end

@@ -60,7 +60,6 @@
     [self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
     [self.doneButton setBackgroundColor:[UIColor blackColor]];
     [self.doneButton addTarget:self action:@selector(doneButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.doneButton.layer setCornerRadius:4.0];
     
     
     //textfield
@@ -81,7 +80,6 @@
     [self.placeholder setText:@"Add a note"];
     
     
-    
     [self.view addSubview:self.viewTitle];
     [self.view addSubview:self.doneButton];
     [self.view addSubview:self.noteTextView];
@@ -93,6 +91,8 @@
 {
     [self.placeholder removeFromSuperview];
 }//textViewDidBeginEditing
+
+
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -150,7 +150,8 @@
     [[NSUserDefaults standardUserDefaults] setObject:noteBody forKey:@"noteBody"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    //attempt to upload to cloud
+    //TODO: implement this laterattempt to upload to cloud
+    /*
     [PFnote saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded)
         {
@@ -164,6 +165,7 @@
             NSLog(@"%@",error);
         }//else - if there was an error
     }]; //block
+     */
 }//saveNoteWithTitle
 
 

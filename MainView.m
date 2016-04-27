@@ -27,6 +27,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.noteArray = [[NSArray alloc] initWithObjects:[[NSUserDefaults standardUserDefaults] stringForKey:@"noteTitle"], nil];
+//    for (int i = 0; i < self.noteArray.count; i++)
+//    {
+//        
+//    }
     [self addElements];
 }//viewDidLoad
 
@@ -35,6 +40,8 @@
 {
     //tableview
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height * 0.1, self.view.frame.size.width, self.view.frame.size.height * 0.9) style:UITableViewStylePlain]; //style is temporary
+    [self.tableView setDelegate:self];
+    [self.tableView setDataSource:self];
     [self.tableView setBackgroundColor:[UIColor grayColor]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLineEtched]; //TODO: figure out how to change style
     
@@ -66,24 +73,25 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
-}//numberOfSectionsInTableView
-/*
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    
-}//numberOfRowsInSection
- */
+}
+
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 60;
-}//heightForRowAtIndexPath
-/*
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.noteArray.count;
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    //do stuff
+    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    cell.textLabel.text = self.noteArray[indexPath.row];
+    return cell;
 }//cellForRowAtIndexPath
- */
-
 
 
 //TODO:implement
