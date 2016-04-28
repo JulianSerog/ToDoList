@@ -40,20 +40,15 @@
 
 -(void)addUI
 {
-    [self loadNote]; //load note if one is available
-    
-    
     //textfield title
     self.viewTitle = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight * 0.1)];
-    //[self.viewTitle setPlaceholder:@"untitled note"];
-    [self.viewTitle setText:@"Untitled Note"]; //MARK: might have to change later on
+    [self.viewTitle setPlaceholder:@"untitled note"];
     [self.viewTitle setBackgroundColor:[UIColor lightGrayColor]];
     [self.viewTitle.layer setBorderColor:[[UIColor blackColor] CGColor]];
     [self.viewTitle.layer setBorderWidth:1];
     [self.viewTitle setTextAlignment:NSTextAlignmentCenter];
     [self.viewTitle setDelegate:self];
     [self.viewTitle setTextColor:[UIColor whiteColor]];
-    
     
     //done button
     self.doneButton = [[UIButton alloc] initWithFrame:CGRectMake(0, viewHeight * 0.9, viewWidth, viewHeight * 0.1)];
@@ -100,12 +95,6 @@
 }//textFieldDidBeginEditing
 
 
-//TODO: implement - loads note from parse
--(void)loadNote
-{
-    //TODO: implement
-}//loadNote
-
 -(void)parseNote
 {
     //used for trimming strings
@@ -114,22 +103,11 @@
     [self.noteTextView.text stringByTrimmingCharactersInSet:charSet];
     
     //check if valid name and contents
-    if (![self.noteTextView isEqual:@""] && ![self.noteTextView.text isEqualToString:@""])
+    if ( ![self.viewTitle.text isEqualToString:@""])
     {
         NSLog(@"valid note1: Title: %@ Body: %@", self.viewTitle.text, self.noteTextView.text);
         [self saveNoteWithTitle:self.viewTitle.text contents:self.noteTextView.text];
-        //TODO: upload to parse
     }//if - title is default, but body is not
-    else if(![self.viewTitle.text isEqualToString:@""] && [self.noteTextView.text isEqualToString:@""])
-    {
-        NSLog(@"valid note2: Title: %@ Body: %@", self.viewTitle.text, self.noteTextView.text);
-        [self saveNoteWithTitle:self.viewTitle.text contents:self.noteTextView.text];
-    }//body is default but title is not
-    else if(![self.viewTitle.text isEqualToString:@"untitled note"] && ![self.viewTitle.text isEqualToString:@""] && ![self.noteTextView.text isEqualToString:@""])
-    {
-        NSLog(@"valid note3: Title: %@ Body: %@", self.viewTitle.text, self.noteTextView.text);
-        [self saveNoteWithTitle:self.viewTitle.text contents:self.noteTextView.text];
-    }//neither title or body are defaults
     else
     {
         NSLog(@"Not a valid note, must have a valid title or some text in the body");
@@ -140,15 +118,31 @@
 -(void)saveNoteWithTitle:(NSString *)noteTitle contents:(NSString *)noteBody
 {
     PFObject *PFnote = [PFObject objectWithClassName:@"PFnote"];
-    NSLog(@"Note title %@", noteTitle);
+    Note *note = [[Note alloc] initWithTitle:noteTitle andBody:noteBody];
+    
     PFnote[@"title"] = noteTitle;
     PFnote[@"contents"] = noteBody;
     
     //save locally first
     [PFnote pinInBackground];
-    [[NSUserDefaults standardUserDefaults] setObject:noteTitle forKey:@"noteTitle"];
-    [[NSUserDefaults standardUserDefaults] setObject:noteBody forKey:@"noteBody"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSDictionary *noteValues = @{@"title" : noteTitle, @"body" : noteBody}; //create dictionary to store note values
+    NSUserDefaults *defaults= [NSUserDefaults standardUserDefaults];
+    if ([[[defaults dictionaryRepresentation] allKeys] containsObject:@"noteArray"])
+    {
+        //append the new note onto the array
+        NSMutableArray *tempArray = [[defaults objectForKey:@"noteArray"] mutableCopy];
+        [tempArray addObject:noteValues];
+        NSArray *addedArray = tempArray;
+        [defaults setObject:addedArray forKey:@"noteArray"];
+    }//if
+    else
+    {
+        //create notearray
+        NSArray *noteArray = [[NSArray alloc] initWithObjects:noteValues, nil];
+        NSLog(@"Title: %@\nBody: %@", note.title, note.body);
+        [defaults setObject:noteArray forKey:@"noteArray"]; //store archived array
+        [defaults synchronize];
+    }//else
     
     //TODO: implement this laterattempt to upload to cloud
     /*

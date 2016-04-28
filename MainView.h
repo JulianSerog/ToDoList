@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Note.h"
 
 @interface MainView : UIViewController <UITableViewDelegate, UITableViewDataSource>
 

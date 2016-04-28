@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Note.h"
 #import "MainView.h"
+
 
 @interface NoteView : UIViewController <UITextViewDelegate, UITextFieldDelegate>
 

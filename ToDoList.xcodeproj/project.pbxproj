@@ -32,6 +32,7 @@
 		9E22D40A1C61943C00E88020 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E22D4041C61943C00E88020 /* ParseUI.framework */; };
 		9E22D42E1C61A09400E88020 /* CustomLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E22D42D1C61A09400E88020 /* CustomLoginViewController.m */; };
 		9E4F7DAE1CB6E0D6001DE89A /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E4F7DAD1CB6E0D6001DE89A /* logo.png */; };
+		9E5A28741CD1DD3F00EB7B22 /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A28731CD1DD3F00EB7B22 /* Note.m */; };
 		9E9E5EF41C62E48800C0FC50 /* LandingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9E5EF31C62E48800C0FC50 /* LandingViewController.m */; };
 		9E9E5EFC1C63D9F000C0FC50 /* DocSets in Resources */ = {isa = PBXBuildFile; fileRef = 9E9E5EF51C63D9F000C0FC50 /* DocSets */; };
 		9E9E5EFD1C63D9F000C0FC50 /* FacebookSDKStrings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9E9E5EF61C63D9F000C0FC50 /* FacebookSDKStrings.bundle */; };
@@ -97,6 +98,8 @@
 		9E22D42C1C61A09400E88020 /* CustomLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomLoginViewController.h; sourceTree = "<group>"; };
 		9E22D42D1C61A09400E88020 /* CustomLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomLoginViewController.m; sourceTree = "<group>"; };
 		9E4F7DAD1CB6E0D6001DE89A /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		9E5A28721CD1DD3F00EB7B22 /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		9E5A28731CD1DD3F00EB7B22 /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
 		9E9E5EF21C62E48800C0FC50 /* LandingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandingViewController.h; sourceTree = "<group>"; };
 		9E9E5EF31C62E48800C0FC50 /* LandingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingViewController.m; sourceTree = "<group>"; };
 		9E9E5EF51C63D9F000C0FC50 /* DocSets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DocSets; sourceTree = "<group>"; };
@@ -263,6 +266,8 @@
 				9E22D42D1C61A09400E88020 /* CustomLoginViewController.m */,
 				9EEF76641CA5F88F008825B7 /* MainView.h */,
 				9EEF76651CA5F88F008825B7 /* MainView.m */,
+				9E5A28721CD1DD3F00EB7B22 /* Note.h */,
+				9E5A28731CD1DD3F00EB7B22 /* Note.m */,
 				9EEF766A1CA7AEA2008825B7 /* NoteView.h */,
 				9EEF766B1CA7AEA2008825B7 /* NoteView.m */,
 			);
@@ -412,6 +417,7 @@
 				9E9E5EF41C62E48800C0FC50 /* LandingViewController.m in Sources */,
 				9E22D42E1C61A09400E88020 /* CustomLoginViewController.m in Sources */,
 				9EEF766C1CA7AEA2008825B7 /* NoteView.m in Sources */,
+				9E5A28741CD1DD3F00EB7B22 /* Note.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,11 +27,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.noteArray = [[NSArray alloc] initWithObjects:[[NSUserDefaults standardUserDefaults] stringForKey:@"noteTitle"], nil];
-//    for (int i = 0; i < self.noteArray.count; i++)
-//    {
-//        
-//    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.noteArray = [defaults objectForKey:@"noteArray"];
+    
     [self addElements];
 }//viewDidLoad
 
@@ -89,16 +88,9 @@
 {
     //do stuff
     UITableViewCell *cell = [[UITableViewCell alloc] init];
-    cell.textLabel.text = self.noteArray[indexPath.row];
+    cell.textLabel.text = [self.noteArray[indexPath.row] objectForKey:@"title"];
     return cell;
 }//cellForRowAtIndexPath
-
-
-//TODO:implement
--(void)addNotes
-{
-    
-}
 
 
 -(void) addNotePressed
