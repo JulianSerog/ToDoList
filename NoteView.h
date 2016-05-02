@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Note.h"
 #import "MainView.h"
 
 
@@ -15,9 +14,12 @@
 
 
 @property(strong,nonatomic) UIButton *doneButton;
-@property(strong,nonatomic) UITextView *noteTextView;
-@property(strong, nonatomic) UITextField *viewTitle;
+@property(strong,nonatomic) UITextView *noteBody;
+@property(strong, nonatomic) UITextField *noteTitle;
 @property(strong, nonatomic) MainView *instanceOfMainView;
 @property(strong, nonatomic) UILabel *placeholder;
+@property(strong, nonatomic) NSString *strTitle;
+@property(strong, nonatomic) NSString *strBody;
+
 
 @end

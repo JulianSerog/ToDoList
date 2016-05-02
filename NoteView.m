@@ -41,29 +41,35 @@
 -(void)addUI
 {
     //textfield title
-    self.viewTitle = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight * 0.1)];
-    [self.viewTitle setPlaceholder:@"untitled note"];
-    [self.viewTitle setBackgroundColor:[UIColor lightGrayColor]];
-    [self.viewTitle.layer setBorderColor:[[UIColor blackColor] CGColor]];
-    [self.viewTitle.layer setBorderWidth:1];
-    [self.viewTitle setTextAlignment:NSTextAlignmentCenter];
-    [self.viewTitle setDelegate:self];
-    [self.viewTitle setTextColor:[UIColor whiteColor]];
+    self.noteTitle = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight * 0.1)];
+    [self.noteTitle setBackgroundColor:[UIColor lightGrayColor]];
+    [self.noteTitle.layer setBorderColor:[[UIColor blackColor] CGColor]];
+    [self.noteTitle.layer setBorderWidth:1];
+    [self.noteTitle setTextAlignment:NSTextAlignmentCenter];
+    [self.noteTitle setDelegate:self];
+    [self.noteTitle setTextColor:[UIColor whiteColor]];
+    [self.noteTitle setText:self.strTitle];
+    if ([self.strTitle isEqualToString:@""])
+        [self.noteTitle setPlaceholder:@"untitled note"]; //only add placeholder if it is a new note
+    [self.view addSubview:self.noteTitle];
     
     //done button
     self.doneButton = [[UIButton alloc] initWithFrame:CGRectMake(0, viewHeight * 0.9, viewWidth, viewHeight * 0.1)];
     [self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
     [self.doneButton setBackgroundColor:[UIColor blackColor]];
     [self.doneButton addTarget:self action:@selector(doneButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.doneButton];
     
     
     //textfield
-    self.noteTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, viewHeight * 0.1, viewWidth, viewHeight * 0.8)];
-    [self.noteTextView setDelegate:self];
-    [self.noteTextView setFont:[UIFont fontWithName:@"Arial-BoldMT" size:24]];
-    [self.noteTextView.layer setBorderWidth:1];
-    [self.noteTextView.layer setBorderColor:[[UIColor blackColor]CGColor]];
-    
+    self.noteBody = [[UITextView alloc] initWithFrame:CGRectMake(0, viewHeight * 0.1, viewWidth, viewHeight * 0.8)];
+    [self.noteBody setDelegate:self];
+    [self.noteBody setFont:[UIFont fontWithName:@"Arial-BoldMT" size:24]];
+    [self.noteBody.layer setBorderWidth:1];
+    [self.noteBody.layer setBorderColor:[[UIColor blackColor]CGColor]];
+    [self.noteBody setText:self.strBody];
+    [self.view addSubview:self.noteBody];
+
     
     
     
@@ -73,12 +79,12 @@
     [self.placeholder setTextColor:[UIColor blackColor]];
     [self.placeholder setAlpha:0.5];
     [self.placeholder setText:@"Add a note"];
+    if ([self.strBody isEqualToString:@""])
+        [self.view addSubview:self.placeholder]; //only add to subview if it is a new note
     
     
-    [self.view addSubview:self.viewTitle];
-    [self.view addSubview:self.doneButton];
-    [self.view addSubview:self.noteTextView];
-    [self.view addSubview:self.placeholder];
+    
+    
 }//addUI
 
 
@@ -91,7 +97,7 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [self.viewTitle setText:@""]; //gives default value
+    
 }//textFieldDidBeginEditing
 
 
@@ -99,15 +105,19 @@
 {
     //used for trimming strings
     NSCharacterSet *charSet = [NSCharacterSet whitespaceCharacterSet];
-    [self.viewTitle.text stringByTrimmingCharactersInSet:charSet];
-    [self.noteTextView.text stringByTrimmingCharactersInSet:charSet];
+    [self.noteTitle.text stringByTrimmingCharactersInSet:charSet];
+    [self.noteBody.text stringByTrimmingCharactersInSet:charSet];
     
     //check if valid name and contents
-    if ( ![self.viewTitle.text isEqualToString:@""])
+    if ( ![self.noteTitle.text isEqualToString:@""] && ![self.noteBody.text isEqualToString:@""])
     {
-        NSLog(@"valid note1: Title: %@ Body: %@", self.viewTitle.text, self.noteTextView.text);
-        [self saveNoteWithTitle:self.viewTitle.text contents:self.noteTextView.text];
+        NSLog(@"valid note1: Title: %@ Body: %@", self.noteTitle.text, self.noteBody.text);
+        [self saveNoteWithTitle:self.noteTitle.text contents:self.noteBody.text];
     }//if - title is default, but body is not
+    else if(![self.noteBody.text isEqualToString:@""] && [self.noteTitle.text isEqualToString:@""])
+    {
+        [self saveNoteWithTitle:@"Untitled Note" contents:self.noteBody.text];
+    }
     else
     {
         NSLog(@"Not a valid note, must have a valid title or some text in the body");
@@ -118,7 +128,6 @@
 -(void)saveNoteWithTitle:(NSString *)noteTitle contents:(NSString *)noteBody
 {
     PFObject *PFnote = [PFObject objectWithClassName:@"PFnote"];
-    Note *note = [[Note alloc] initWithTitle:noteTitle andBody:noteBody];
     
     PFnote[@"title"] = noteTitle;
     PFnote[@"contents"] = noteBody;
@@ -139,7 +148,7 @@
     {
         //create notearray
         NSArray *noteArray = [[NSArray alloc] initWithObjects:noteValues, nil];
-        NSLog(@"Title: %@\nBody: %@", note.title, note.body);
+        NSLog(@"Title: %@\nBody: %@", noteTitle, noteBody);
         [defaults setObject:noteArray forKey:@"noteArray"]; //store archived array
         [defaults synchronize];
     }//else
