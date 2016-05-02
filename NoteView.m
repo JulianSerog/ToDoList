@@ -49,6 +49,7 @@
     [self.noteTitle setDelegate:self];
     [self.noteTitle setTextColor:[UIColor whiteColor]];
     [self.noteTitle setText:self.strTitle];
+    [self.noteTitle setReturnKeyType:UIReturnKeyDone];
     if ([self.strTitle isEqualToString:@""])
         [self.noteTitle setPlaceholder:@"untitled note"]; //only add placeholder if it is a new note
     [self.view addSubview:self.noteTitle];
@@ -68,6 +69,7 @@
     [self.noteBody.layer setBorderWidth:1];
     [self.noteBody.layer setBorderColor:[[UIColor blackColor]CGColor]];
     [self.noteBody setText:self.strBody];
+    [self.noteBody setKeyboardType:UIKeyboardTypeAlphabet];
     [self.view addSubview:self.noteBody];
 
     
@@ -94,11 +96,11 @@
 }//textViewDidBeginEditing
 
 
-
--(void)textFieldDidBeginEditing:(UITextField *)textField
+-(BOOL)textFieldShouldReturn:(UITextField*)aTextField
 {
-    
-}//textFieldDidBeginEditing
+    [self.noteTitle resignFirstResponder];
+    return YES;
+}
 
 
 -(void)parseNote
@@ -180,10 +182,6 @@
     [self parseNote];
     [self performSegueWithIdentifier:@"toMainView" sender:self];
 }//doneButtonPressed
-
-
-//TODO: load in and save note functionality
-
 
 @end
 

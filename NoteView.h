@@ -18,8 +18,8 @@
 @property(strong, nonatomic) UITextField *noteTitle;
 @property(strong, nonatomic) MainView *instanceOfMainView;
 @property(strong, nonatomic) UILabel *placeholder;
-@property(strong, nonatomic) NSString *strTitle;
-@property(strong, nonatomic) NSString *strBody;
+@property(strong, nonatomic) NSString *strTitle; //used to pass data through old VC
+@property(strong, nonatomic) NSString *strBody; //used to pass data through old VC
 
 
 @end
