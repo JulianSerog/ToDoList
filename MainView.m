@@ -55,13 +55,10 @@
     [self.addNoteButton setTitle:@"Add a Note" forState:UIControlStateNormal];
     [self.addNoteButton addTarget:self action:@selector(addNotePressed) forControlEvents:UIControlEventTouchUpInside];
     
-    //testing a table cell
-    UITableViewCell *testCell = [[UITableViewCell alloc]initWithFrame:CGRectMake(0, self.tableView.frame.size.height * 0.05, self.tableView.frame.size.width, self.tableView.frame.size.height * 0.1)];
     
     //get items from locally saved list
     NSString *value = [[NSUserDefaults standardUserDefaults] stringForKey:@"noteTitle"];
     NSLog(@"From main Menu, saved item: %@",value);
-    [self.tableView addSubview:testCell];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOnTableView:)];
     [self.tableView addGestureRecognizer:tap];
@@ -107,13 +104,14 @@
 
 
 //detects taps on a cell
--(void) didTapOnTableView:(UIGestureRecognizer*) recognizer {
+-(void) didTapOnTableView:(UIGestureRecognizer*) recognizer
+{
     CGPoint tapLocation = [recognizer locationInView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
     
     if (indexPath) { //we are in a tableview cell, let the gesture be handled by the view
-        NSLog(@"%@", [self.noteArray[indexPath.row] objectForKey:@"title"]);
-        NSLog(@"%@", [self.noteArray[indexPath.row] objectForKey:@"body"]);
+        //NSLog(@"%@", [self.noteArray[indexPath.row] objectForKey:@"title"]);
+        //NSLog(@"%@", [self.noteArray[indexPath.row] objectForKey:@"body"]);
         self.noteTitle = [self.noteArray[indexPath.row] objectForKey:@"title"];
         self.noteBody = [self.noteArray[indexPath.row] objectForKey:@"body"];
         

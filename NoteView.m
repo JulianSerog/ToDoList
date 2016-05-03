@@ -27,13 +27,11 @@
 @implementation NoteView
 
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self addUI];
     self.instanceOfMainView = [[MainView alloc] init];
-    
 }//viewDidLoad
 
 
@@ -83,10 +81,6 @@
     [self.placeholder setText:@"Add a note"];
     if ([self.strBody isEqualToString:@""])
         [self.view addSubview:self.placeholder]; //only add to subview if it is a new note
-    
-    
-    
-    
 }//addUI
 
 
@@ -100,7 +94,7 @@
 {
     [self.noteTitle resignFirstResponder];
     return YES;
-}
+}//textFieldShouldReturn
 
 
 -(void)parseNote
@@ -113,7 +107,7 @@
     //check if valid name and contents
     if ( ![self.noteTitle.text isEqualToString:@""] && ![self.noteBody.text isEqualToString:@""])
     {
-        NSLog(@"valid note1: Title: %@ Body: %@", self.noteTitle.text, self.noteBody.text);
+        //NSLog(@"valid note1: Title: %@ Body: %@", self.noteTitle.text, self.noteBody.text);
         [self saveNoteWithTitle:self.noteTitle.text contents:self.noteBody.text];
     }//if - title is default, but body is not
     else if(![self.noteBody.text isEqualToString:@""] && [self.noteTitle.text isEqualToString:@""])
@@ -126,31 +120,62 @@
     }//not a valid note -- test
 }//parseNote
 
-//TODO: fix method
 -(void)saveNoteWithTitle:(NSString *)noteTitle contents:(NSString *)noteBody
 {
+    /*
     PFObject *PFnote = [PFObject objectWithClassName:@"PFnote"];
-    
     PFnote[@"title"] = noteTitle;
     PFnote[@"contents"] = noteBody;
-    
     //save locally first
     [PFnote pinInBackground];
+     */
     NSDictionary *noteValues = @{@"title" : noteTitle, @"body" : noteBody}; //create dictionary to store note values
     NSUserDefaults *defaults= [NSUserDefaults standardUserDefaults];
     if ([[[defaults dictionaryRepresentation] allKeys] containsObject:@"noteArray"])
     {
         //append the new note onto the array
-        NSMutableArray *tempArray = [[defaults objectForKey:@"noteArray"] mutableCopy];
-        [tempArray addObject:noteValues];
-        NSArray *addedArray = tempArray;
-        [defaults setObject:addedArray forKey:@"noteArray"];
+        if ([self noteExists:noteTitle])
+        {
+            
+            UIAlertController *alertNote = [UIAlertController alertControllerWithTitle:@"Duplicate Note!" message:@"You are trying to overwrite a note with the same title, are you sure you want to do this?" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *overwrite = [UIAlertAction actionWithTitle:@"Overwrite" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                //overwrite note in background
+                NSArray *notes = [defaults objectForKey:@"noteArray"];
+                for (NSDictionary *i in notes)
+                {
+                    if ([[i objectForKey:@"title"] isEqualToString:self.noteTitle.text])
+                    {
+                        //TODO: fix
+                        [[i mutableCopy] setValue:self.noteBody.text forKey:@"body"];
+                        NSLog(@"textfield: %@", self.noteBody.text);
+                        NSLog(@"after copy: %@", [i objectForKey:@"body"]);
+                        break;
+                    }//if
+                }//for
+                [defaults synchronize]; //synchronize and segue out
+                [self performSegueWithIdentifier:@"toMainView" sender:self];
+            }]; //block that overwrites note in background
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:nil];
+            //add actions to alert
+            [alertNote addAction:cancel];
+            [alertNote addAction:overwrite];
+            //present the alert controller
+            [self presentViewController:alertNote animated:YES completion:nil];
+            //TODO: add a handler for duplicate notes for overwriting
+        }//if the note exists
+        else
+        {
+            NSMutableArray *tempArray = [[defaults objectForKey:@"noteArray"] mutableCopy];
+            [tempArray addObject:noteValues];
+            NSArray *addedArray = tempArray;
+            [defaults setObject:addedArray forKey:@"noteArray"];
+        }
     }//if
     else
     {
         //create notearray
         NSArray *noteArray = [[NSArray alloc] initWithObjects:noteValues, nil];
-        NSLog(@"Title: %@\nBody: %@", noteTitle, noteBody);
+        //NSLog(@"Title: %@\nBody: %@", noteTitle, noteBody);
         [defaults setObject:noteArray forKey:@"noteArray"]; //store archived array
         [defaults synchronize];
     }//else
@@ -172,6 +197,19 @@
     }]; //block
      */
 }//saveNoteWithTitle
+
+//returns true if note title is found in background
+-(BOOL)noteExists:(NSString *)noteTitle
+{
+    NSUserDefaults *defaults= [NSUserDefaults standardUserDefaults];
+    NSArray *notes = [defaults objectForKey:@"noteArray"];
+    for (NSDictionary *i in notes)
+    {
+        if ([[i objectForKey:@"title"] isEqualToString:self.noteTitle.text])
+            return true;
+    }
+    return false;
+}//noteExists
 
 
 
