@@ -140,18 +140,22 @@
             UIAlertController *alertNote = [UIAlertController alertControllerWithTitle:@"Duplicate Note!" message:@"You are trying to overwrite a note with the same title, are you sure you want to do this?" preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *overwrite = [UIAlertAction actionWithTitle:@"Overwrite" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 //overwrite note in background
-                NSArray *notes = [defaults objectForKey:@"noteArray"];
-                for (NSDictionary *i in notes)
+                NSMutableArray *notes = [[NSMutableArray alloc]init];//[[defaults objectForKey:@"noteArray"] mutableCopy];
+                for (NSDictionary *i in [defaults objectForKey:@"noteArray"]) {
+                    [notes addObject:[i mutableCopy]];
+                }//for
+                
+                for(int i = 0; i < [notes count]; i++)
                 {
-                    if ([[i objectForKey:@"title"] isEqualToString:self.noteTitle.text])
-                    {
-                        //TODO: fix
-                        [[i mutableCopy] setValue:self.noteBody.text forKey:@"body"];
-                        NSLog(@"textfield: %@", self.noteBody.text);
-                        NSLog(@"after copy: %@", [i objectForKey:@"body"]);
+                    NSLog(@"note: %@", notes[i]);
+                    if ([[notes[i] objectForKey:@"title"] isEqualToString:self.noteTitle.text]) {
+                        [[notes objectAtIndex:i] setValue:self.noteBody.text forKey:@"body"];
+                        NSArray *nonMutableNoteArray = notes;
+                        [defaults setObject:nonMutableNoteArray forKey:@"noteArray"];
                         break;
                     }//if
                 }//for
+                
                 [defaults synchronize]; //synchronize and segue out
                 [self performSegueWithIdentifier:@"toMainView" sender:self];
             }]; //block that overwrites note in background

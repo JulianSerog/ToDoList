@@ -16,7 +16,7 @@
 
 @implementation LoginViewController
 
-@synthesize title, loginButton, altLoginButton, user;
+@synthesize title, loginButton, altLoginButton, user, tableView, logo, logoView;
     
 
 -(void)viewWillAppear:(BOOL)animated
