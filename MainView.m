@@ -31,7 +31,7 @@
     self.noteTitle = @"";
     self.noteBody = @"";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    self.noteArray = [defaults objectForKey:@"noteArray"];
+    self.noteArray = [[defaults objectForKey:@"noteArray"] mutableCopy];
     
     [self addElements];
 }//viewDidLoad
@@ -121,6 +121,18 @@
         NSLog(@"touched something else than a cell");
     }//else
 }//didTapOnTableView
+
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //NSLog(@"delete tapped");
+        [self.noteArray removeObjectAtIndex:indexPath.row];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:self.noteArray forKey:@"noteArray"];
+        [self.tableView reloadData];
+    }//if
+}//delete handler
 
 
 -(void) addNotePressed
