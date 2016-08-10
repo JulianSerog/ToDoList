@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="khZ-8B-nAF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="khZ-8B-nAF">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -20,7 +20,7 @@
                     </view>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="login" id="060-u4-HnY"/>
-                        <segue destination="alP-YI-E8D" kind="show" identifier="start" id="Wtv-AG-Bhh"/>
+                        <segue destination="6ab-LM-ZPy" kind="show" identifier="start" id="Wtv-AG-Bhh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0X-lh-EyL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -42,7 +42,7 @@
                     </view>
                     <connections>
                         <segue destination="AqL-fQ-x7Y" kind="show" identifier="customLogin" id="6Xc-au-6hu"/>
-                        <segue destination="alP-YI-E8D" kind="show" identifier="toTable1" id="FLr-EZ-3O9"/>
+                        <segue destination="6ab-LM-ZPy" kind="show" identifier="toTable1" id="FLr-EZ-3O9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -63,7 +63,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="alP-YI-E8D" kind="show" identifier="toTable2" id="cb5-x6-IaJ"/>
+                        <segue destination="6ab-LM-ZPy" kind="show" identifier="toTable2" id="cb5-x6-IaJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nec-9L-qyi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -83,13 +83,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="G8P-Hr-1bX">
+                        <barButtonItem key="rightBarButtonItem" title="New Note" id="650-py-GsE">
+                            <connections>
+                                <segue destination="9F9-Jc-7Z3" kind="show" id="uFK-cq-CCo"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="9F9-Jc-7Z3" kind="show" identifier="toNote" id="NHs-kJ-ILf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YkB-Aa-VYh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1271" y="683"/>
+            <point key="canvasLocation" x="2083" y="683"/>
         </scene>
         <!--Note View-->
         <scene sceneID="Xz1-LQ-Nnl">
@@ -100,20 +107,40 @@
                         <viewControllerLayoutGuide type="bottom" id="wJq-lI-m5U"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hso-LX-rII">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
-                        <segue destination="alP-YI-E8D" kind="show" identifier="toMainView" id="yAy-GH-UPK"/>
+                        <segue destination="6ab-LM-ZPy" kind="show" identifier="toMainView" id="yAy-GH-UPK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LJn-pJ-cff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2299" y="683"/>
+            <point key="canvasLocation" x="3111" y="683"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="K2Y-MD-hrn">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6ab-LM-ZPy" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UPQ-7h-Xw3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="alP-YI-E8D" kind="relationship" relationship="rootViewController" id="60E-H0-dgE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b8A-4U-EoS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1271" y="683"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="yAy-GH-UPK"/>
+        <segue reference="uFK-cq-CCo"/>
     </inferredMetricsTieBreakers>
 </document>

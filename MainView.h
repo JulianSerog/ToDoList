@@ -10,11 +10,10 @@
 
 @interface MainView : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-
-@property(strong, nonatomic) UIButton *addNoteButton;
 @property(strong, nonatomic) UITableView *tableView;
 @property(strong, nonatomic) NSMutableArray *noteArray;
 @property(strong, nonatomic) NSString *noteTitle;
 @property(strong, nonatomic) NSString *noteBody;
+@property(strong, nonatomic) UIBarButtonItem *logout;
 
 @end

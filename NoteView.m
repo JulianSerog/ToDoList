@@ -34,10 +34,14 @@
     self.instanceOfMainView = [[MainView alloc] init];
 }//viewDidLoad
 
-
-
 -(void)addUI
 {
+    //add nav bar item
+    self.btn = [[UIBarButtonItem alloc]initWithTitle:@"save" style:UIBarButtonItemStyleDone target:self action:@selector(doneButtonPressed)];
+    self.navigationItem.rightBarButtonItem = self.btn;
+    //change title of back button to cancel
+    self.navigationController.navigationBar.topItem.title = @"cancel";
+    
     //textfield title
     self.noteTitle = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, viewWidth, viewHeight * 0.1)];
     [self.noteTitle setBackgroundColor:[UIColor lightGrayColor]];
@@ -52,16 +56,8 @@
         [self.noteTitle setPlaceholder:@"untitled note"]; //only add placeholder if it is a new note
     [self.view addSubview:self.noteTitle];
     
-    //done button
-    self.doneButton = [[UIButton alloc] initWithFrame:CGRectMake(0, viewHeight * 0.9, viewWidth, viewHeight * 0.1)];
-    [self.doneButton setTitle:@"Done" forState:UIControlStateNormal];
-    [self.doneButton setBackgroundColor:[UIColor blackColor]];
-    [self.doneButton addTarget:self action:@selector(doneButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:self.doneButton];
-    
-    
     //textfield
-    self.noteBody = [[UITextView alloc] initWithFrame:CGRectMake(0, viewHeight * 0.1, viewWidth, viewHeight * 0.8)];
+    self.noteBody = [[UITextView alloc] initWithFrame:CGRectMake(0, viewHeight * 0.1, viewWidth, viewHeight * 0.9)];
     [self.noteBody setDelegate:self];
     [self.noteBody setFont:[UIFont fontWithName:@"Arial-BoldMT" size:24]];
     [self.noteBody.layer setBorderWidth:1];
@@ -69,9 +65,6 @@
     [self.noteBody setText:self.strBody];
     [self.noteBody setKeyboardType:UIKeyboardTypeAlphabet];
     [self.view addSubview:self.noteBody];
-
-    
-    
     
     //placeholder label
     self.placeholder = [[UILabel alloc] initWithFrame:CGRectMake(0, viewHeight * 0.4, viewWidth, viewHeight * 0.1)];
@@ -184,7 +177,7 @@
         [defaults synchronize];
     }//else
     
-    //TODO: implement this laterattempt to upload to cloud
+    //TODO: implement this later attempt to upload to cloud
     /*
     [PFnote saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded)
@@ -224,6 +217,10 @@
     [self parseNote];
     [self performSegueWithIdentifier:@"toMainView" sender:self];
 }//doneButtonPressed
+
+
+
+
 
 @end
 
