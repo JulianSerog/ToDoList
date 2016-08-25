@@ -15,16 +15,18 @@
 
 #define facebookBlue [UIColor colorWithRed:59/255.0 green:89/255.0 blue:152/255.0 alpha:1.0]
 
+NSString *cusTableCell = @"CusTableCell";
+
 
 @interface MainView ()
 
 @end
 
-
-
 @implementation MainView
 
-@synthesize tableView;
+@synthesize noteTableView;
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,78 +38,79 @@
     [self addElements];
 }//viewDidLoad
 
--(void)viewDidAppear:(BOOL)animated
-{
-    [self.tableView reloadData];
+-(void)viewDidAppear:(BOOL)animated {
+    [self.noteTableView reloadData];
+    self.title = @"Noted!";
 }
 
 
--(void) addElements
-{
+
+-(void) addElements {
     //custom nav bar stuff
     self.logout = [[UIBarButtonItem alloc]initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(logoutPressed)];
     self.navigationItem.leftBarButtonItem = self.logout;
     //set title of app
     self.title = @"Noted!";
     
+    [self addtableView];
+}//addElements
+
+
+-(void)addtableView {
     //tableview
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height * 1.0) style:UITableViewStylePlain]; //style is temporary
-    [self.tableView setDelegate:self];
-    [self.tableView setDataSource:self];
-    [self.tableView setBackgroundColor:[UIColor grayColor]];
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLineEtched]; //TODO: figure out how to change style
+    self.noteTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height * 1.0) style:UITableViewStylePlain]; //style is temporary
+    
+    //register class
+    [self.noteTableView registerClass:CustomTableCell.self forCellReuseIdentifier:cusTableCell];
+    //set delegates and data source
+    [self.noteTableView setDelegate:self];
+    [self.noteTableView setDataSource:self];
+    [self.noteTableView setBackgroundColor:[UIColor grayColor]];
+    [self.noteTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     //get items from locally saved list
     NSString *value = [[NSUserDefaults standardUserDefaults] stringForKey:@"noteTitle"];
     NSLog(@"From main Menu, saved item: %@",value);
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOnTableView:)];
-    [self.tableView addGestureRecognizer:tap];
+    [self.noteTableView addGestureRecognizer:tap];
     
     //addElements
-    [self.view addSubview:self.tableView];
-
-}//addElements
+    [self.view addSubview:self.noteTableView];
+}//addTableView
 
 
 //MARK: Create table view
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.noteArray.count;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //do stuff
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
-    cell.textLabel.text = [self.noteArray[indexPath.row] objectForKey:@"title"];
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CustomTableCell *cell = [[CustomTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cusTableCell];
     
-    return cell;
+    [cell.cellTitle setText:[self.noteArray[indexPath.row] objectForKey:@"title"]];
+        return cell;
 }//cellForRowAtIndexPath
 
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NoteView *noteView = [segue destinationViewController];
     noteView.strBody = self.noteBody;
     noteView.strTitle = self.noteTitle;
-}
+}//prepare for segue
 
 
 //detects taps on a cell
--(void) didTapOnTableView:(UIGestureRecognizer*) recognizer
-{
-    CGPoint tapLocation = [recognizer locationInView:self.tableView];
-    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:tapLocation];
+-(void) didTapOnTableView:(UIGestureRecognizer*) recognizer {
+    CGPoint tapLocation = [recognizer locationInView:self.noteTableView];
+    NSIndexPath *indexPath = [self.noteTableView indexPathForRowAtPoint:tapLocation];
     
     if (indexPath) { //we are in a tableview cell, let the gesture be handled by the view
         //NSLog(@"%@", [self.noteArray[indexPath.row] objectForKey:@"title"]);
@@ -123,26 +126,24 @@
 }//didTapOnTableView
 
 
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+//delete handler
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //NSLog(@"delete tapped");
         [self.noteArray removeObjectAtIndex:indexPath.row];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:self.noteArray forKey:@"noteArray"];
-        [self.tableView reloadData];
+        [self.noteTableView reloadData];
     }//if
 }//delete handler
 
 
--(void) addNotePressed
-{
+-(void) addNotePressed {
     //NSLog(@"addNotePressed");
     [self performSegueWithIdentifier:@"toNote" sender:self];
 }//addNotePressed
 
--(void) logoutPressed
-{
+-(void) logoutPressed {
     NSLog(@"logout pressed");
 }
 

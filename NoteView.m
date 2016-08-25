@@ -34,6 +34,10 @@
     self.instanceOfMainView = [[MainView alloc] init];
 }//viewDidLoad
 
+-(void)viewWillDisappear:(BOOL)animated {
+    self.navigationController.navigationBar.topItem.title = @"Noted!";
+}
+
 -(void)addUI
 {
     //add nav bar item

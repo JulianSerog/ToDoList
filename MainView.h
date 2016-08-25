@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CustomTableCell.h"
 
 @interface MainView : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
-@property(strong, nonatomic) UITableView *tableView;
+@property(strong, nonatomic) UITableView *noteTableView;
 @property(strong, nonatomic) NSMutableArray *noteArray;
 @property(strong, nonatomic) NSString *noteTitle;
 @property(strong, nonatomic) NSString *noteBody;
