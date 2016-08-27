@@ -16,5 +16,8 @@
 @property(strong, nonatomic) NSString *noteTitle;
 @property(strong, nonatomic) NSString *noteBody;
 @property(strong, nonatomic) UIBarButtonItem *logout;
+@property(strong, nonatomic) UIBarButtonItem *btn;
+
+
 
 @end

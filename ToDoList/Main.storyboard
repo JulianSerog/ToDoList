@@ -83,13 +83,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="G8P-Hr-1bX">
-                        <barButtonItem key="rightBarButtonItem" title="New Note" id="650-py-GsE">
-                            <connections>
-                                <segue destination="9F9-Jc-7Z3" kind="show" id="uFK-cq-CCo"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="G8P-Hr-1bX"/>
                     <connections>
                         <segue destination="9F9-Jc-7Z3" kind="show" identifier="toNote" id="NHs-kJ-ILf"/>
                     </connections>
@@ -138,9 +132,27 @@
             </objects>
             <point key="canvasLocation" x="1271" y="683"/>
         </scene>
+        <!--Note View-->
+        <scene sceneID="YbI-Md-6QW">
+            <objects>
+                <viewController id="bfH-U3-mnz" customClass="NoteView" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YKn-oE-MfX"/>
+                        <viewControllerLayoutGuide type="bottom" id="gNN-Kp-ZP2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8rL-2I-NW4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sx8-dt-Hrw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3111" y="683"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="yAy-GH-UPK"/>
-        <segue reference="uFK-cq-CCo"/>
     </inferredMetricsTieBreakers>
 </document>

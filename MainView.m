@@ -26,8 +26,6 @@ NSString *cusTableCell = @"CusTableCell";
 
 @synthesize noteTableView;
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.noteTitle = @"";
@@ -41,17 +39,19 @@ NSString *cusTableCell = @"CusTableCell";
 -(void)viewDidAppear:(BOOL)animated {
     [self.noteTableView reloadData];
     self.title = @"Noted!";
-}
-
-
+}//viewDidAppear
 
 -(void) addElements {
     //custom nav bar stuff
     self.logout = [[UIBarButtonItem alloc]initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(logoutPressed)];
+    //new note button
+    self.btn = [[UIBarButtonItem alloc]initWithTitle:@"New Note" style:UIBarButtonItemStyleDone target:self action:@selector(addNotePressed)];
+    self.navigationItem.rightBarButtonItem = self.btn;
+    //logout button
     self.navigationItem.leftBarButtonItem = self.logout;
     //set title of app
     self.title = @"Noted!";
-    
+    //add table view method
     [self addtableView];
 }//addElements
 
@@ -137,16 +137,15 @@ NSString *cusTableCell = @"CusTableCell";
     }//if
 }//delete handler
 
-
 -(void) addNotePressed {
-    //NSLog(@"addNotePressed");
+    //reset title and body strings to empty for a new note
+    self.noteTitle = @"";
+    self.noteBody = @"";
     [self performSegueWithIdentifier:@"toNote" sender:self];
 }//addNotePressed
 
 -(void) logoutPressed {
     NSLog(@"logout pressed");
 }
-
-
 
 @end
