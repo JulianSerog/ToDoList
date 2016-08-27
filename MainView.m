@@ -43,12 +43,12 @@ NSString *cusTableCell = @"CusTableCell";
 
 -(void) addElements {
     //custom nav bar stuff
-    self.logout = [[UIBarButtonItem alloc]initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(logoutPressed)];
+    //self.logout = [[UIBarButtonItem alloc]initWithTitle:@"Logout" style:UIBarButtonItemStyleDone target:self action:@selector(logoutPressed)];
     //new note button
     self.btn = [[UIBarButtonItem alloc]initWithTitle:@"New Note" style:UIBarButtonItemStyleDone target:self action:@selector(addNotePressed)];
     self.navigationItem.rightBarButtonItem = self.btn;
     //logout button
-    self.navigationItem.leftBarButtonItem = self.logout;
+    //self.navigationItem.leftBarButtonItem = self.logout;
     //set title of app
     self.title = @"Noted!";
     //add table view method
@@ -144,8 +144,12 @@ NSString *cusTableCell = @"CusTableCell";
     [self performSegueWithIdentifier:@"toNote" sender:self];
 }//addNotePressed
 
+
 -(void) logoutPressed {
     NSLog(@"logout pressed");
+    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+    [loginManager logOut];
+    //TODO: find a way to logout delete local notes and segue out to main view
 }
 
 @end
