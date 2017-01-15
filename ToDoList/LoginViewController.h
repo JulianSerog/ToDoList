@@ -15,7 +15,7 @@
 
 @interface LoginViewController : UIViewController
 
-@property(strong, nonatomic) UILabel *title;
+@property(strong, nonatomic) UILabel *viewTitle;
 @property(strong,nonatomic) UIButton *altLoginButton;
 @property(strong, nonatomic) UITableViewController *tableView;
 @property(strong, nonatomic) UIImage *logo;

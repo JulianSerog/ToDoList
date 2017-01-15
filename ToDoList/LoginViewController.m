@@ -53,12 +53,12 @@
     
     [self.view setBackgroundColor:[UIColor lightGrayColor]];
     //label
-    self.title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height * 0.10)];
-    [self.title setTextAlignment:NSTextAlignmentCenter];
-    [self.title setText:@"Login To Continue!"];
-    [self.title setAlpha:0.35];
-    [self.title setBackgroundColor:[UIColor blackColor]];
-    [self.title setTextColor:[UIColor whiteColor]];
+    self.viewTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height * 0.10)];
+    [self.viewTitle setTextAlignment:NSTextAlignmentCenter];
+    [self.viewTitle setText:@"Login To Continue!"];
+    [self.viewTitle setAlpha:0.35];
+    [self.viewTitle setBackgroundColor:[UIColor blackColor]];
+    [self.viewTitle setTextColor:[UIColor whiteColor]];
     
 
     //other login in button

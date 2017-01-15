@@ -51,9 +51,26 @@ NSString *cusTableCell = @"CusTableCell";
     //self.navigationItem.leftBarButtonItem = self.logout;
     //set title of app
     self.title = @"Noted!";
+    
     //add table view method
     [self addtableView];
+    
+    [self checkForNotes];
+    
 }//addElements
+
+
+//this method creates a label telling the user that no notes exist
+-(void) checkForNotes {
+    if (self.noteArray.count == 0) {
+        NSLog(@"creating label");
+        UILabel *noNotesLbl = [[UILabel alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height * 0.4, self.view.frame.size.width, self.view.frame.size.height * 0.2)];
+        [noNotesLbl setTextAlignment:NSTextAlignmentCenter];
+        [noNotesLbl setText:@"You currently have no notes saved!"];
+        
+        [self.view addSubview:noNotesLbl]; //add label to view
+    }
+}
 
 
 -(void)addtableView {
@@ -134,6 +151,7 @@ NSString *cusTableCell = @"CusTableCell";
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:self.noteArray forKey:@"noteArray"];
         [self.noteTableView reloadData];
+        [self checkForNotes];
     }//if
 }//delete handler
 
